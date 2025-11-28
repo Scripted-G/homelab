@@ -1,4 +1,4 @@
-# Cybersecurity Homelab
+# Homelab
 
 Hands-on cybersecurity practice environment for vulnerability assessment, penetration testing, and security operations. This repository documents my journey in building practical offensive and defensive security skills through controlled lab exercises.
 
@@ -127,7 +127,7 @@ This repository is actively maintained and regularly updated with:
 
 ## 📫 Connect
 
-- **LinkedIn:** [linkedin.com/in/gabriel-orta-cyber](https://linkedin.com/in/gabriel-orta-cyber)
+- **LinkedIn:** [linkedin.com/in/gabriel-orta-cyber](https://linkedin.com/in/gabriel-orta)
 - **GitHub:** [github.com/Scripted-G](https://github.com/Scripted-G)
 
 ---
