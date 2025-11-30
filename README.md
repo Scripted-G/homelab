@@ -13,11 +13,13 @@ This homelab serves as a safe, isolated environment where I can:
 
 ## 🛠️ Lab Environment
 
-**Virtualization Platform:** KVM/QEMU on Fedora 43
+**Virtualization Platform:** KVM/QEMU on Arch Linux
 
 **Virtual Machines:**
 - **Kali Linux** - Primary attacking machine with penetration testing tools
 - **Metasploitable 2** - Intentionally vulnerable target for exploitation practice
+- **Windows Server 2022 - Learning Active Directory and Windows server administration
+- **Windows 11 - Windows client for domain testing and endpoint practice
 - **Network Configuration** - Isolated virtual network for safe testing
 
 **Key Tools Used:**
