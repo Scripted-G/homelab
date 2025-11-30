@@ -4,7 +4,7 @@ This document outlines the setup of my cybersecurity homelab environment using K
 Environment Details
 Host System:
 
-OS: Pop!_OS 22.04 LTS
+OS: Arch Linux
 Virtualization: KVM/QEMU with virt-manager
 CPU: AMD Ryzen 9 9900X
 RAM: 32 GB
