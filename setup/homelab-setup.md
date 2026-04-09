@@ -1,173 +1,160 @@
 # Cybersecurity Homelab Setup
 
 ## Overview
-
-This document outlines the setup of my cybersecurity homelab environment using KVM/QEMU virtualization on Arch Linux. The lab provides a safe, isolated environment for practicing penetration testing, system administration, and security operations.
+This document outlines the setup of my cybersecurity homelab environment 
+using VMware Workstation Pro on Windows 11 IoT Enterprise LTSC. The lab 
+provides a safe, isolated environment for practicing penetration testing, 
+Active Directory administration, and security operations.
 
 ## Host System
 
 | Component | Details |
 |-----------|---------|
-| OS | Arch Linux |
-| Virtualization | KVM/QEMU with virt-manager |
+| OS | Windows 11 IoT Enterprise LTSC (Version 24H2, hardened) |
+| Virtualization | VMware Workstation Pro 25H2 |
 | CPU | AMD Ryzen 9 9900X |
-| RAM | 32 GB |
+| RAM | 64 GB |
+| GPU | NVIDIA GeForce RTX 5070 Ti |
+
+## Network Configuration
+
+Two separate virtual networks isolate lab environments:
+
+**NAT Network**
+- Used by Kali Linux and Metasploitable 2
+- Provides internet access for updates and tool downloads
+- Isolates offensive lab traffic from the AD lab
+
+**Internal-Lab (LAN Segment)**
+- Used by WS22-DC and Win11-Pro
+- Win11-Pro accesses internet through WS22-DC
+- Mirrors enterprise network design where clients route through the domain controller
+- Isolates client traffic from direct internet access
 
 ## Virtual Machines
 
 ### Kali Linux
-Primary penetration testing platform with security tools.
+Primary penetration testing platform.
 
 | Resource | Allocation |
 |----------|------------|
 | RAM | 4 GB |
 | CPUs | 4 |
-| Disk | 60 GB |
-| Network | NAT (default) |
+| Disk | 80.1 GB |
+| Network | NAT |
 
 ### Metasploitable 2
 Intentionally vulnerable target system for exploitation practice.
 
 | Resource | Allocation |
 |----------|------------|
-| RAM | 512 MB |
-| CPUs | 1 |
-| Disk | ~8 GB (pre-configured image) |
-| Network | NAT (default) |
+| RAM | 2 GB |
+| CPUs | 2 |
+| Disk | 8 GB |
+| Network | NAT |
 | OS | Ubuntu 8.04 (intentionally outdated) |
 
-### Windows Server 2022
-Domain controller and server administration practice.
+Default credentials: msfadmin / msfadmin
 
-| Resource | Allocation |
-|----------|------------|
-| RAM | 4 GB |
-| CPUs | 2 |
-| Disk | 50 GB |
-| Network | NAT (default) |
-
-### Windows 11 Pro
-Windows client for domain joining and endpoint testing.
+### WS22-DC (Windows Server 2022 Domain Controller)
+Active Directory domain controller and server administration practice.
 
 | Resource | Allocation |
 |----------|------------|
 | RAM | 4 GB |
 | CPUs | 4 |
-| Disk | 128 GB |
-| Network | NAT (default) |
+| Disk | 60 GB (NVMe) |
+| Network Adapter 1 | NAT |
+| Network Adapter 2 | LAN Segment — Internal-Lab |
 
-## Network Configuration
+### Win11-Pro (Windows 11 Pro)
+Domain-joined client for endpoint testing and AD practice.
 
-All VMs are connected to the default NAT network (`virbr0`) which provides:
-
-- Isolation from the host's physical network
-- Internet access for updates and tool downloads
-- VM-to-VM communication on the same subnet (192.168.122.0/24)
+| Resource | Allocation |
+|----------|------------|
+| RAM | 4 GB |
+| CPUs | 4 |
+| Disk | 64 GB (NVMe) |
+| Network | LAN Segment — Internal-Lab |
 
 ## Setup Instructions
 
 ### Kali Linux
-
-1. Download the official Kali Linux ISO from [kali.org](https://www.kali.org/get-kali/)
-2. Open virt-manager and create a new VM
+1. Download the official Kali Linux ISO from kali.org
+2. Open VMware Workstation Pro and create a new VM
 3. Select the downloaded ISO as installation media
-4. Allocate resources (4 GB RAM, 4 CPUs, 60 GB disk)
-5. Complete the standard Kali installation
+4. Allocate resources (4 GB RAM, 4 CPUs, 80 GB disk)
+5. Set network adapter to NAT
+6. Complete the standard Kali installation
 
 ### Metasploitable 2
+Metasploitable 2 is distributed as a VMware image and can be imported directly.
 
-Metasploitable 2 is distributed as a VMware image and needs to be converted for KVM.
+1. Download Metasploitable 2 from Rapid7
+2. Extract the archive
+3. Open VMware Workstation Pro
+4. Select "Open a Virtual Machine" and browse to the extracted .vmx file
+5. Set network adapter to NAT
+6. Allocate resources (2 GB RAM, 2 CPUs)
 
-**Download and convert:**
+Default credentials: msfadmin / msfadmin
 
-```bash
-# Download Metasploitable 2
-wget https://sourceforge.net/projects/metasploitable/files/Metasploitable2/metasploitable-linux-2.0.0.zip
-
-# Extract the archive
-unzip metasploitable-linux-2.0.0.zip
-cd Metasploitable2-Linux
-
-# Convert VMware disk to KVM format
-qemu-img convert -f vmdk -O qcow2 Metasploitable.vmdk metasploitable2.qcow2
-
-# Move to libvirt images directory
-sudo mv metasploitable2.qcow2 /var/lib/libvirt/images/
-```
-
-**Create the VM:**
-
-1. Open virt-manager
-2. Select "Import existing disk image"
-3. Browse to `/var/lib/libvirt/images/metasploitable2.qcow2`
-4. Set OS type to "Ubuntu 8.04"
-5. Allocate minimal resources (512 MB RAM, 1 CPU)
-6. Connect to the default NAT network
-
-**Default credentials:** `msfadmin` / `msfadmin`
-
-### Windows Server 2022
-
+### WS22-DC (Windows Server 2022)
 1. Download the Windows Server 2022 ISO from Microsoft Evaluation Center
-2. Open virt-manager and create a new VM
+2. Open VMware Workstation Pro and create a new VM
 3. Select the downloaded ISO as installation media
-4. Allocate resources (4 GB RAM, 2 CPUs, 50 GB disk)
-5. Complete the Windows Server installation
-6. Install VirtIO drivers for optimal performance (optional but recommended)
+4. Allocate resources (4 GB RAM, 4 CPUs, 60 GB disk)
+5. Add two network adapters — NAT and LAN Segment (Internal-Lab)
+6. Complete the Windows Server installation
+7. Install VMware Tools
+8. Configure as Active Directory Domain Controller
 
-### Windows 11 Pro
-
+### Win11-Pro (Windows 11 Pro)
 1. Download the Windows 11 ISO from Microsoft
-2. Open virt-manager and create a new VM
+2. Open VMware Workstation Pro and create a new VM
 3. Select the downloaded ISO as installation media
-4. Allocate resources (4 GB RAM, 4 CPUs, 128 GB disk)
-5. Enable TPM 2.0 and Secure Boot in VM settings (required for Windows 11)
-6. Complete the Windows 11 installation
-7. Install VirtIO drivers for optimal performance (optional but recommended)
+4. Allocate resources (4 GB RAM, 4 CPUs, 64 GB disk)
+5. Set network adapter to LAN Segment (Internal-Lab)
+6. Enable TPM 2.0 in VM settings (required for Windows 11)
+7. Complete the Windows 11 installation
+8. Install VMware Tools
+9. Join the domain hosted on WS22-DC
 
 ## SSH Access to Metasploitable 2
-
 Metasploitable 2 uses older SSH algorithms that modern clients reject by default.
 
-**One-time connection:**
+One-time connection from Kali:
 
-```bash
-ssh -oHostKeyAlgorithms=+ssh-rsa -oPubkeyAcceptedKeyTypes=+ssh-rsa msfadmin@192.168.122.151
-```
+    ssh -oHostKeyAlgorithms=+ssh-rsa -oPubkeyAcceptedKeyTypes=+ssh-rsa msfadmin@[METASPLOITABLE-IP]
 
-**Permanent configuration:**
+Permanent configuration — add to ~/.ssh/config on Kali:
 
-Add the following to `~/.ssh/config`:
-
-```
-Host metasploitable
-    HostName 192.168.122.151
-    User msfadmin
-    HostKeyAlgorithms +ssh-rsa
-    PubkeyAcceptedKeyTypes +ssh-rsa
-```
+    Host metasploitable
+        HostName [METASPLOITABLE-IP]
+        User msfadmin
+        HostKeyAlgorithms +ssh-rsa
+        PubkeyAcceptedKeyTypes +ssh-rsa
 
 Then connect with:
 
-```bash
-ssh metasploitable
-# Password: msfadmin
-```
+    ssh metasploitable
+    Password: msfadmin
 
 ## Security Considerations
-
-- **Isolation**: VMs are on an isolated NAT network, separate from the host's physical network
-- **No Updates**: Metasploitable 2 is intentionally NOT updated to preserve vulnerabilities
+- **Isolation**: Offensive lab (Kali + Metasploitable) on NAT. AD lab on 
+  Internal-Lab LAN Segment — Win11-Pro routes internet traffic through 
+  WS22-DC, mirroring enterprise network design.
+- **No Updates**: Metasploitable 2 is intentionally NOT updated to preserve 
+  vulnerabilities
 - **Snapshots**: Take VM snapshots before major changes for easy recovery
 - **Legal**: Only test on systems you own or have explicit permission to test
 
 ## Resources
-
-- [Metasploitable 2 Download](https://sourceforge.net/projects/metasploitable/)
-- [Kali Linux Documentation](https://www.kali.org/docs/)
-- [Rapid7 Metasploitable Guide](https://docs.rapid7.com/metasploit/metasploitable-2/)
-- [Windows Server Evaluation](https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-2022)
+- Metasploitable 2: https://sourceforge.net/projects/metasploitable/
+- Kali Linux Documentation: https://www.kali.org/docs/
+- Rapid7 Metasploitable Guide: https://docs.rapid7.com/metasploit/metasploitable-2/
+- Windows Server Evaluation: https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-2022
+- VMware Workstation Pro Documentation: https://docs.vmware.com/en/VMware-Workstation-Pro/index.html
 
 ---
-
-*Last Updated: November 2025*
+Last Updated: April 2026
