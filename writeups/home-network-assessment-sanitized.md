@@ -283,7 +283,6 @@ This home network security assessment successfully identified all active devices
 
 **Date:** November 2025  
 **Environment:** Personal Home Lab Network  
-**Assessment Duration:** ~2 hours  
 **Tools Used:** Nmap, curl, telnet, MAC vendor lookup services
 
 ## Disclaimer
