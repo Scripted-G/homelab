@@ -257,13 +257,11 @@ This exercise demonstrates practical skills applicable to SOC Analyst and Penetr
 
 **Date:** November 2025  
 **Environment:** Personal Home Lab Network  
-**Assessment Duration:** ~1 hour  
 **Tools Used:** Nmap, curl, Roku ECP API
 
 ## References
 
 - [Roku External Control Protocol Documentation](https://developer.roku.com/docs/developer-program/debugging/external-control-api.md)
-- [Roku ECP Guide](https://developer.roku.com/docs/developer-program/debugging/external-control-api.md)
 - [OWASP IoT Security Testing Guide](https://owasp.org/www-project-iot-security-testing-guide/)
 
 ## Disclaimer
