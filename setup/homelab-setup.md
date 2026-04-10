@@ -54,8 +54,6 @@ Intentionally vulnerable target system for exploitation practice.
 | Network | NAT |
 | OS | Ubuntu 8.04 (intentionally outdated) |
 
-Default credentials: msfadmin / msfadmin
-
 ### WS22-DC (Windows Server 2022 Domain Controller)
 Active Directory domain controller and server administration practice.
 
