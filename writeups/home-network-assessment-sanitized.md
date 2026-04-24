@@ -11,7 +11,7 @@ Conducted a comprehensive security assessment of a home network to identify conn
 
 ## Lab Environment
 - **Environment Type:** Personal home network (authorized testing)
-- **Attack Platform:** Arch Linux workstation with Nmap
+- **Attack Platform:** Kali Linux Virtual Machine with Nmap
 - **Network Type:** Standard residential network with mixed devices
 
 ## Tools Used
