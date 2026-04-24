@@ -16,7 +16,7 @@ This homelab serves as a safe, isolated environment where I can:
 **Host System:**
 - OS: Debian 13 Trixie (Gnome)
 - CPU: AMD Ryzen 9 9900X
-- RAM: 64GB
+- RAM: 64GB DDR5
 - GPU: AMD Powecolor Hellhound RX 9070 XT
 - Virtualization: Virtual Machine Manager, QEMU/KVM
 
