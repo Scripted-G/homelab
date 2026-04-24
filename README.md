@@ -14,11 +14,11 @@ This homelab serves as a safe, isolated environment where I can:
 ## 🛠️ Lab Environment
 
 **Host System:**
-- OS: Windows 11 IoT Enterprise LTSC (Version 24H2, hardened)
+- OS: Debian 13 Trixie (Gnome)
 - CPU: AMD Ryzen 9 9900X
 - RAM: 64GB
 - GPU: NVIDIA GeForce RTX 5070 Ti
-- Virtualization: VMware Workstation Pro 25H2
+- Virtualization: Virtual Machine Manager, QEMU/KVM
 
 **Virtual Machines:**
 
@@ -74,7 +74,7 @@ This homelab serves as a safe, isolated environment where I can:
 ## 🎓 Learning Path
 
 **Completed:**
-- TCM Security BFCM CTF
+- TCM Security BFCM CTF- Prompt Injecting LLM on TCM Website for entry to win free training
 
 **In Progress:**
 - CompTIA Security+ (exam May 2026)
