@@ -10,11 +10,11 @@ Active Directory administration, and security operations.
 
 | Component | Details |
 |-----------|---------|
-| OS | Windows 11 IoT Enterprise LTSC (Version 24H2, hardened) |
-| Virtualization | VMware Workstation Pro 25H2 |
+| OS | Debian 13 Trixie (Gnome) |
+| Virtualization | Virtual Machine Manager & QEMU/KVM |
 | CPU | AMD Ryzen 9 9900X |
-| RAM | 64 GB |
-| GPU | NVIDIA GeForce RTX 5070 Ti |
+| RAM | 64 GB DDR5 |
+| GPU | AMD Powercolor Hellhound RX 9070 XT |
 
 ## Network Configuration
 
@@ -79,7 +79,7 @@ Domain-joined client for endpoint testing and AD practice.
 
 ### Kali Linux
 1. Download the official Kali Linux ISO from kali.org
-2. Open VMware Workstation Pro and create a new VM
+2. Open Virtual Machine Manager and create a new VM
 3. Select the downloaded ISO as installation media
 4. Allocate resources (4 GB RAM, 4 CPUs, 80 GB disk)
 5. Set network adapter to NAT
@@ -90,8 +90,8 @@ Metasploitable 2 is distributed as a VMware image and can be imported directly.
 
 1. Download Metasploitable 2 from Rapid7
 2. Extract the archive
-3. Open VMware Workstation Pro
-4. Select "Open a Virtual Machine" and browse to the extracted .vmx file
+3. Open Virtual Machine Manager
+4. Select "Create New Virtual Machine" and browse to the extracted .vmx file
 5. Set network adapter to NAT
 6. Allocate resources (2 GB RAM, 2 CPUs)
 
@@ -99,24 +99,22 @@ Default credentials: msfadmin / msfadmin
 
 ### WS22-DC (Windows Server 2022)
 1. Download the Windows Server 2022 ISO from Microsoft Evaluation Center
-2. Open VMware Workstation Pro and create a new VM
+2. Open Virtual Machine Manager and create a new VM
 3. Select the downloaded ISO as installation media
 4. Allocate resources (4 GB RAM, 4 CPUs, 60 GB disk)
 5. Add two network adapters — NAT and LAN Segment (Internal-Lab)
 6. Complete the Windows Server installation
-7. Install VMware Tools
-8. Configure as Active Directory Domain Controller
+7. Configure as Active Directory Domain Controller
 
 ### Win11-Pro (Windows 11 Pro)
 1. Download the Windows 11 ISO from Microsoft
-2. Open VMware Workstation Pro and create a new VM
+2. Open Virtual Machine Manager and create a new VM
 3. Select the downloaded ISO as installation media
 4. Allocate resources (4 GB RAM, 4 CPUs, 64 GB disk)
 5. Set network adapter to LAN Segment (Internal-Lab)
 6. Enable TPM 2.0 in VM settings (required for Windows 11)
 7. Complete the Windows 11 installation
-8. Install VMware Tools
-9. Join the domain hosted on WS22-DC
+8. Join the domain hosted on WS22-DC
 
 ## SSH Access to Metasploitable 2
 Metasploitable 2 uses older SSH algorithms that modern clients reject by default.
@@ -152,7 +150,6 @@ Then connect with:
 - Kali Linux Documentation: https://www.kali.org/docs/
 - Rapid7 Metasploitable Guide: https://docs.rapid7.com/metasploit/metasploitable-2/
 - Windows Server Evaluation: https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-2022
-- VMware Workstation Pro Documentation: https://docs.vmware.com/en/VMware-Workstation-Pro/index.html
 
 ---
 Last Updated: April 2026
