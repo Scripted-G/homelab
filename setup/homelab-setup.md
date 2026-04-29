@@ -2,15 +2,15 @@
 
 ## Overview
 This document outlines the setup of my cybersecurity homelab environment 
-using VMware Workstation Pro on Windows 11 IoT Enterprise LTSC. The lab 
-provides a safe, isolated environment for practicing penetration testing, 
-Active Directory administration, and security operations.
+using KVM/QEMU on Fedora 44. The lab provides a safe, isolated environment 
+for practicing penetration testing, Active Directory administration, and 
+security operations.
 
 ## Host System
 
 | Component | Details |
 |-----------|---------|
-| OS | Fedor 44 (Gnome) |
+| OS | Fedora 44 (Gnome) |
 | Virtualization | Virtual Machine Manager & QEMU/KVM |
 | CPU | AMD Ryzen 9 9900X |
 | RAM | 64 GB DDR5 |
@@ -152,4 +152,3 @@ Then connect with:
 - Windows Server Evaluation: https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-2022
 
 ---
-Last Updated: April 2026
