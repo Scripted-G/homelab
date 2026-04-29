@@ -86,14 +86,21 @@ Domain-joined client for endpoint testing and AD practice.
 6. Complete the standard Kali installation
 
 ### Metasploitable 2
-Metasploitable 2 is distributed as a VMware image and can be imported directly.
+Metasploitable 2 is distributed as a VMware image (.vmdk) and must be 
+converted to a KVM-compatible format before use.
 
-1. Download Metasploitable 2 from Rapid7
-2. Extract the archive
-3. Open Virtual Machine Manager
-4. Select "Create New Virtual Machine" and browse to the extracted .vmx file
-5. Set network adapter to NAT
-6. Allocate resources (2 GB RAM, 2 CPUs)
+1. Download Metasploitable 2 from Rapid7 and extract the archive
+2. Convert the .vmdk disk to .qcow2 format:
+
+       qemu-img convert -f vmdk -O qcow2 Metasploitable.vmdk Metasploitable.qcow2
+
+3. Move the converted .qcow2 file to your VM storage location
+4. Open Virtual Machine Manager and create a new VM
+5. Select "Import existing disk image" and browse to the .qcow2 file
+6. Set OS type to Linux / Ubuntu (or Generic Linux)
+7. Allocate resources (2 GB RAM, 2 CPUs)
+8. Set network adapter to NAT
+9. Complete the VM creation
 
 Default credentials: msfadmin / msfadmin
 
@@ -112,7 +119,7 @@ Default credentials: msfadmin / msfadmin
 3. Select the downloaded ISO as installation media
 4. Allocate resources (4 GB RAM, 4 CPUs, 64 GB disk)
 5. Set network adapter to LAN Segment (Internal-Lab)
-6. Enable TPM 2.0 in VM settings (required for Windows 11)
+6. Add an emulated TPM device via Add Hardware → TPM (required for Windows 11). Ensure UEFI/OVMF firmware is selected.
 7. Complete the Windows 11 installation
 8. Join the domain hosted on WS22-DC
 
