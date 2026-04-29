@@ -14,10 +14,10 @@ This homelab serves as a safe, isolated environment where I can:
 ## 🛠️ Lab Environment
 
 **Host System:**
-- OS: Debian 13 Trixie (Gnome)
+- OS: Fedora 44 (Gnome)
 - CPU: AMD Ryzen 9 9900X
 - RAM: 64GB DDR5
-- GPU: AMD Powecolor Hellhound RX 9070 XT
+- GPU: NVIDIA Asus TUF RTX 5070Ti
 - Virtualization: Virtual Machine Manager, QEMU/KVM
 
 **Virtual Machines:**
