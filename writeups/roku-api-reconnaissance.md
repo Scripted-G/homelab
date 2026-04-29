@@ -171,10 +171,10 @@ If an attacker gained access to the local network, they could:
 ## Remediation Recommendations
 
 **For This Device:**
-1. ✅ Enable Limited Mode in Roku settings to block external control
-2. ✅ Verify device is not exposed to internet (port forwarding, UPnP)
-3. ✅ Consider VLAN segmentation for IoT devices
-4. ⚠️ Current state acceptable for home use with trusted network
+1. Enable Limited Mode in Roku settings to block external control
+2. Verify device is not exposed to internet (port forwarding, UPnP)
+3. Consider VLAN segmentation for IoT devices
+4. Current state acceptable for home use with trusted network
 
 **General IoT Security Best Practices:**
 1. **Network Segmentation** - Separate IoT devices from critical systems
@@ -186,9 +186,9 @@ If an attacker gained access to the local network, they could:
 ## Ethical Considerations
 
 **Authorization:**
-- ✅ All testing performed on personally owned device
-- ✅ Testing conducted on private network with full authorization
-- ✅ No attempts to access devices outside of controlled environment
+- All testing performed on personally owned device
+- Testing conducted on private network with full authorization
+- No attempts to access devices outside of controlled environment
 
 **Responsible Use:**
 - This API is designed for legitimate remote control applications
@@ -200,11 +200,11 @@ If an attacker gained access to the local network, they could:
 This reconnaissance exercise successfully demonstrated how IoT devices expose APIs that can be discovered through enumeration and interacted with using standard tools. The Roku ECP API provides comprehensive remote control capabilities with minimal security controls, relying primarily on network-level access restrictions.
 
 **Key Success Metrics:**
-- ✅ Successfully identified device on network
-- ✅ Discovered and documented API endpoints
-- ✅ Demonstrated remote control capabilities
-- ✅ Evaluated security controls (Limited Mode)
-- ✅ Assessed real-world risk and mitigation strategies
+- Successfully identified device on network
+- Discovered and documented API endpoints
+- Demonstrated remote control capabilities
+- Evaluated security controls (Limited Mode)
+- Assessed real-world risk and mitigation strategies
 
 ---
 
