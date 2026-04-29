@@ -10,11 +10,11 @@ Active Directory administration, and security operations.
 
 | Component | Details |
 |-----------|---------|
-| OS | Debian 13 Trixie (Gnome) |
+| OS | Fedor 44 (Gnome) |
 | Virtualization | Virtual Machine Manager & QEMU/KVM |
 | CPU | AMD Ryzen 9 9900X |
 | RAM | 64 GB DDR5 |
-| GPU | AMD Powercolor Hellhound RX 9070 XT |
+| GPU | NVIDIA Asus TUF RTX 5070Ti |
 
 ## Network Configuration
 
