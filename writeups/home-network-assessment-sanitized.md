@@ -199,18 +199,15 @@ curl -d '' http://[DEVICE_IP]:8060/keypress/Home
 4. **Access controls functioning** - Web interfaces require authentication
 
 ### Attack Surface Assessment
-
-**Low Risk Devices:**
+**Devices with no exposed services (lowest risk):**
 - Personal workstation - All ports closed
 - Mobile devices - No services exposed
-- Roku streaming device - Limited Mode prevents abuse
+- Roku streaming device - Limited Mode blocks remote control
 
-**Medium Risk Devices:**
-- Router/Gateway - Standard risk; requires strong password
-- WiFi Extender - Standard risk; requires strong password
-
-**Minimal Risk IoT:**
-- Smart Lock - Proprietary protocol, minimal exposure
+**Devices with exposed services (require authentication and good password hygiene):**
+- Router/Gateway - Web admin interface authenticated
+- WiFi Extender - Web admin interface authenticated
+- Smart Lock - Proprietary protocol, no standard surface
 
 ## Key Takeaways
 
