@@ -73,10 +73,10 @@ This homelab serves as a safe, isolated environment where I can:
 ## 🎓 Learning Path
 
 **Completed:**
-- TCM Security BFCM CTF- Prompt Injecting LLM on TCM Website for entry to win free training
+- TCM Security 2025 Black Friday CTF — Successfully completed prompt injection challenge for free training entry. Writeup pending; planning to combine with future AI/LLM security exercises (Lakera Gandalf, etc.) as a practice log.
 
 **In Progress:**
-- CompTIA Security+ (exam May 2026)
+- CompTIA Security+
 
 **Future Goals:**
 - Advanced penetration testing techniques
@@ -119,8 +119,6 @@ is for educational purposes only.
 ## 🔄 Updates
 This repository is actively maintained and updated with new exercises, 
 writeups, and scripts.
-
-**Last Updated:** April 2026
 
 ## 📫 Connect
 - **LinkedIn:** [linkedin.com/in/gabriel-orta](https://linkedin.com/in/gabriel-orta)
