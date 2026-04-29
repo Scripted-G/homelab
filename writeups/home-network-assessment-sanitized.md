@@ -59,7 +59,7 @@ nmap -sV -p- [target-ip]
 
 ### Phase 4: Security Assessment
 
-**Attempted API interaction and service enumeration:**
+**Tested service responses and API endpoints:**
 ```bash
 curl http://[target-ip]:[port]
 telnet [target-ip] [port]
@@ -91,9 +91,9 @@ telnet [target-ip] [port]
 - Connects to Tuya cloud services
 
 **Security Assessment:**
-- ✅ Minimal attack surface (single proprietary port)
-- ✅ Does not expose web interface
-- ✅ No standard protocols exposed
+- Minimal attack surface (single proprietary port)
+- Does not expose web interface
+- No standard protocols exposed
 
 ---
 
@@ -110,9 +110,9 @@ telnet [target-ip] [port]
 - Web administration interface (password protected)
 
 **Security Assessment:**
-- ✅ Authentication required for web interface (401 Unauthorized)
-- ✅ Legitimate network services only
-- ✅ Proper access controls in place
+- Authentication required for web interface (401 Unauthorized)
+- Legitimate network services only
+- Proper access controls in place
 
 ---
 
@@ -134,10 +134,10 @@ telnet [target-ip] [port]
 - Additional proprietary service
 
 **Security Assessment:**
-- ✅ **Limited Mode enabled** - Blocks external control commands
-- ✅ ECP API returns: "ECP command not allowed in Limited mode"
-- ✅ Minimal attack surface
-- ✅ Properly secured with access restrictions
+- **Limited Mode enabled** - Blocks external control commands
+- ECP API returns: "ECP command not allowed in Limited mode"
+- Minimal attack surface
+- Properly secured with access restrictions
 
 **API Testing:**
 ```bash
@@ -169,10 +169,10 @@ curl -d '' http://[DEVICE_IP]:8060/keypress/Home
 **Open Ports:** NONE
 
 **Assessment:**
-- ✅ All ports closed - excellent security posture
-- ✅ Firewall properly configured
-- ✅ No unnecessary services exposed
-- ✅ Secure workstation configuration
+- All ports closed - excellent security posture
+- Firewall properly configured
+- No unnecessary services exposed
+- Secure workstation configuration
 
 ---
 
@@ -226,10 +226,10 @@ curl -d '' http://[DEVICE_IP]:8060/keypress/Home
 **Current State:** Network is well-secured with no critical vulnerabilities identified.
 
 **Best Practices Observed:**
-- ✅ Minimal services exposed
-- ✅ Authentication on admin interfaces
-- ✅ IoT devices properly configured
-- ✅ Workstation firewall active
+- Minimal services exposed
+- Authentication on admin interfaces
+- IoT devices properly configured
+- Workstation firewall active
 
 **Optional Enhancements:**
 1. **Network Segmentation** - Consider VLAN separation for IoT devices
@@ -240,10 +240,10 @@ curl -d '' http://[DEVICE_IP]:8060/keypress/Home
 ## Ethical Considerations
 
 **Scope of Assessment:**
-- ✅ All devices scanned are on personal home network
-- ✅ Full authorization to test own devices
-- ✅ No attempts to bypass security controls when blocked
-- ✅ Assessment stopped at security boundaries
+- All devices scanned are on personal home network
+- Full authorization to test own devices
+- No attempts to bypass security controls when blocked
+- Assessment stopped at security boundaries
 
 **Responsible Disclosure:**
 - No vulnerabilities requiring disclosure were discovered
@@ -260,7 +260,6 @@ This home network security assessment successfully identified all active devices
 
 **Date:** November 2025  
 **Environment:** Personal Home Lab Network  
-**Tools Used:** Nmap, curl, telnet, MAC vendor lookup services
 
 ## Disclaimer
 
