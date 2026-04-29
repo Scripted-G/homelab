@@ -214,27 +214,12 @@ curl -d '' http://[DEVICE_IP]:8060/keypress/Home
 
 ## Key Takeaways
 
-### Technical Skills Demonstrated
-1. **Network Reconnaissance** - Successfully mapped entire home network
-2. **Service Enumeration** - Identified services and versions on open ports
-3. **Device Fingerprinting** - Used MAC addresses to identify device manufacturers
-4. **API Discovery** - Found and tested Roku ECP API
-5. **Security Assessment** - Evaluated security controls and access restrictions
-6. **Protocol Analysis** - Attempted various connection methods (HTTP, telnet, API calls)
-
 ### Security Lessons Learned
 1. **Security settings work** - Limited Mode on Roku effectively blocked unauthorized access
 2. **Minimal services = smaller attack surface** - Devices with fewer open ports are more secure
 3. **Authentication matters** - Web interfaces protected by login prevent casual exploitation
 4. **IoT can be secure** - Proprietary protocols and limited exposure reduce risk
 5. **Proper workstation hardening** - Closed ports indicate good security practices
-
-### Real-World Applications
-This assessment demonstrates skills directly applicable to:
-- **SOC Analyst roles** - Network monitoring and device inventory
-- **Security Analyst positions** - Risk assessment and vulnerability identification
-- **Penetration Testing** - Reconnaissance and enumeration phases
-- **Network Security** - Understanding device security postures
 
 ## Remediation Recommendations
 
@@ -268,14 +253,6 @@ This assessment demonstrates skills directly applicable to:
 ## Conclusion
 
 This home network security assessment successfully identified all active devices, enumerated services, and evaluated security postures. The network demonstrates good security practices with minimal attack surface, proper authentication controls, and effective security features.
-
-**Skills Practiced:**
-- Network scanning and reconnaissance
-- Service enumeration and identification
-- Device fingerprinting via MAC addresses
-- API interaction and testing
-- Security control evaluation
-- Professional documentation
 
 **Assessment Outcome:** Network is properly secured with no immediate vulnerabilities requiring remediation. All devices demonstrate appropriate security configurations for their intended purposes.
 
