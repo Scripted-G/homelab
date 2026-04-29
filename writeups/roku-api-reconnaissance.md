@@ -96,7 +96,7 @@ curl -d '' http://[ROKU_IP]:8060/launch/837
 curl http://[ROKU_IP]:8060/query/active-app
 ```
 
-**Result:** ✅ **Successful** - YouTube launched remotely
+**Result:** YouTube launched remotely (verified via active-app query)
 ```xml
 <active-app>
     <app id="837" type="appl">YouTube</app>
@@ -134,11 +134,11 @@ curl -d '' http://[ROKU_IP]:8060/keypress/Home
 
 ### Security Assessment
 
-**Vulnerabilities Identified:**
-1. ✅ **Limited Mode Disabled** - Device accepts remote control commands
-2. ✅ **No Authentication Required** - API endpoints accessible without credentials
-3. ✅ **Network Accessible** - Any device on local network can control Roku
-4. ✅ **Information Disclosure** - Device model, serial number, and app list exposed
+**Findings:**
+1. **Limited Mode Disabled** — Device accepts remote control commands
+2. **No Authentication Required** — API endpoints accessible without credentials
+3. **Network Accessible** — Any device on local network can control Roku
+4. **Information Disclosure** — Device model, serial number, and app list exposed
 
 **Risk Level:** Low to Medium (Local Network Only)
 
@@ -158,26 +158,6 @@ If an attacker gained access to the local network, they could:
 
 **Reality Check:** These scenarios require local network access, making them low probability in most environments.
 
-## Technical Skills Demonstrated
-
-### Reconnaissance Skills
-1. **Network Scanning** - Identified IoT device via port scanning
-2. **Service Enumeration** - Discovered non-standard ports (8060) through testing
-3. **API Discovery** - Identified undocumented API endpoints through experimentation
-4. **Protocol Analysis** - Understanding HTTP-based control protocols
-
-### API Interaction
-1. **RESTful API Testing** - GET and POST requests to control endpoints
-2. **XML Parsing** - Interpreting device responses in XML format
-3. **Command Injection** - Sending control commands via API
-4. **State Verification** - Confirming successful command execution
-
-### Security Analysis
-1. **Access Control Evaluation** - Identified lack of authentication
-2. **Security Control Testing** - Discovered Limited Mode was disabled
-3. **Attack Surface Assessment** - Documented exposed endpoints and capabilities
-4. **Risk Assessment** - Evaluated real-world exploitability
-
 ## Key Takeaways
 
 ### Lessons Learned
@@ -187,24 +167,6 @@ If an attacker gained access to the local network, they could:
 3. **Local Network Access = Control** - Physical network security is critical for IoT
 4. **Documentation Matters** - Roku's ECP is actually documented, making it easy to interact with
 5. **Legitimate vs. Malicious Use** - Same API used for remote apps and potential attacks
-
-### Real-World Applications
-
-**SOC Analyst Skills:**
-- IoT device identification and inventory
-- Understanding device communication patterns
-- Recognizing normal vs. suspicious API usage
-
-**Penetration Testing Skills:**
-- API enumeration and discovery
-- Authentication bypass (in this case, lack of auth)
-- Remote control and manipulation of devices
-- Documentation of findings and recommendations
-
-**Network Security:**
-- Understanding IoT attack surfaces
-- Importance of network segmentation
-- Evaluating device security controls
 
 ## Remediation Recommendations
 
@@ -244,20 +206,10 @@ This reconnaissance exercise successfully demonstrated how IoT devices expose AP
 - ✅ Evaluated security controls (Limited Mode)
 - ✅ Assessed real-world risk and mitigation strategies
 
-**Skills Practiced:**
-- Network reconnaissance
-- API discovery and enumeration
-- HTTP/REST API interaction
-- IoT device security assessment
-- Professional security documentation
-
-This exercise demonstrates practical skills applicable to SOC Analyst and Penetration Testing roles, showing the ability to discover, enumerate, and assess networked devices in a methodical and documented manner.
-
 ---
 
 **Date:** November 2025  
 **Environment:** Personal Home Lab Network  
-**Tools Used:** Nmap, curl, Roku ECP API
 
 ## References
 
