@@ -36,7 +36,6 @@ This homelab serves as a safe, isolated environment where I can:
 - Wireshark
 - Netcat
 - Burp Suite
-- Kali Linux toolset
 
 ## 📁 Repository Structure
 
@@ -48,7 +47,7 @@ This homelab serves as a safe, isolated environment where I can:
 
 ## 🔍 Completed Exercises
 
-### Exploitation & Vulnerability Assessment
+###  Reconnaissance & Exploitation
 
 1. **vsftpd 2.3.4 Backdoor Exploitation**
    - Exploited known backdoor vulnerability in vsftpd on Metasploitable 2
