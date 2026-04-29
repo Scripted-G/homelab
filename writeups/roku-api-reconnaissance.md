@@ -110,7 +110,7 @@ Sent Home button command to return to main menu:
 curl -d '' http://[ROKU_IP]:8060/keypress/Home
 ```
 
-**Result:** ✅ **Successful** - Device returned to Home screen
+**Result:** Device returned to Home screen
 
 ## Findings
 
