@@ -10,8 +10,8 @@ security operations.
 
 | Component | Details |
 |-----------|---------|
-| OS | Fedora 44 (Gnome) |
-| Virtualization | Virtual Machine Manager & QEMU/KVM |
+| OS | Windows 11 IoT LTSC |
+| Virtualization | VMware Workstation Pro |
 | CPU | AMD Ryzen 9 9900X |
 | RAM | 64 GB DDR5 |
 | GPU | NVIDIA Asus TUF RTX 5070Ti |
