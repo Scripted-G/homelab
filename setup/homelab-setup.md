@@ -11,7 +11,7 @@ This document outlines the setup of my cybersecurity homelab environment using V
 | Virtualization | VMware Workstation Pro |
 | CPU | AMD Ryzen 9 9900X |
 | RAM | 64 GB DDR5 |
-| GPU | NVIDIA Asus TUF RTX 5070Ti |
+| GPU | NVIDIA Asus TUF RTX 5070 Ti |
 
 ## Network Configuration
 
@@ -110,9 +110,11 @@ Default credentials: msfadmin / msfadmin
 3. Select the downloaded ISO as installation media
 4. Allocate resources (4 GB RAM, 4 CPUs, 64 GB disk)
 5. Set network adapter to LAN Segment (Internal-Lab)
-6. Encrypt the VM first (VM Settings → Options → Access Control → Encrypt) using a strong password, then add a TPM device (VM Settings → Hardware → Add → Trusted Platform Module). Ensure UEFI firmware is selected in VM Settings → Options → Advanced.
-7. Complete the Windows 11 installation
-8. Join the domain hosted on WS22-DC
+6. Set the firmware to UEFI (VM Settings → Options → Advanced)
+7. Encrypt the VM (VM Settings → Options → Access Control → Encrypt) using a strong password
+8. Add a TPM device (VM Settings → Hardware → Add → Trusted Platform Module)
+9. Complete the Windows 11 installation
+10. Join the domain hosted on WS22-DC
 
 ## SSH Access to Metasploitable 2
 Metasploitable 2 uses older SSH algorithms that modern clients reject by default.
