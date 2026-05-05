@@ -13,12 +13,26 @@ This homelab serves as a safe, isolated environment where I can:
 
 ## 🛠️ Lab Environment
 
+[Host: Windows 11 IoT LTSC]
+                    [VMware Workstation Pro]
+                              │
+              ┌───────────────┴───────────────┐
+              │                               │
+       [Offensive Lab]                  [AD Lab]
+       (NAT network)                    (Isolated network)
+              │                               │
+       ┌──────┴──────┐                ┌──────┴──────┐
+       │             │                │             │
+   Kali Linux  Metasploitable 2  Server 2022   Win 11 Pro
+                                  (DC)         (Domain Client)
+
 **Host System:**
-- OS: Windows 11 IoT LTSC
+- OS: Windows 11 IoT LTSC (hardened: telemetry disabled, no Microsoft account, OneDrive blocked via Group Policy)
 - CPU: AMD Ryzen 9 9900X
 - RAM: 64GB DDR5
-- GPU: NVIDIA Asus TUF RTX 5070Ti
-- Virtualization: Virtual Machine Manager, QEMU/KVM
+- GPU: NVIDIA Asus TUF RTX 5070 Ti
+- Virtualization: VMware Workstation Pro
+- Lab VMs: UEFI + Secure Boot, TPM passthrough for Windows 11 clients, isolated virtual networks per lab segment
 
 **Virtual Machines:**
 
@@ -73,15 +87,13 @@ This homelab serves as a safe, isolated environment where I can:
 ## 🎓 Learning Path
 
 **Completed:**
-- TCM Security 2025 Black Friday CTF — Successfully completed prompt injection challenge for free training entry. Writeup pending; planning to combine with future AI/LLM security exercises (Lakera Gandalf, etc.) as a practice log.
+- TCM Security 2025 Black Friday CTF — Successfully completed the prompt injection challenge to earn a free training entry. Writeup forthcoming as part of a planned AI/LLM security series including Lakera Gandalf and similar exercises.
 
 **In Progress:**
-- CompTIA Security+
-
-**Future Goals:**
-- Advanced penetration testing techniques
-- Web application security testing
-- Security automation with Python
+- CompTIA CySA+ (planned summer 2026)
+- BloodHound and AD attack chains in the lab
+- Burp Suite Professional workflows on intentionally vulnerable web apps (DVWA, Juice Shop)
+- Building offensive tooling in C and Go
 - OSCP preparation
 
 ## 🔐 Skills Demonstrated
