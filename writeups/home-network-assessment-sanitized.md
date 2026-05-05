@@ -260,6 +260,6 @@ This assessment identified 14 active devices, enumerated their services, and eva
 
 ## Disclaimer
 
-This security assessment was conducted on a personal home network with full authorization. All testing was performed on personally owned devices within a private network environment. This documentation is for educational and portfolio purposes, demonstrating network security assessment skills applicable to professional cybersecurity roles.
+This work was conducted with full authorization in an environment I own and control. All testing was performed for educational purposes to demonstrate skills applicable to professional cybersecurity roles.
 
-**Important:** Unauthorized network scanning or security testing is illegal. Always obtain explicit written permission before conducting security assessments on any network or system you do not own.
+**Important:** Unauthorized access to computer systems, networks, or devices is illegal. This documentation is for educational and portfolio purposes only. Always obtain explicit written permission before conducting security assessments on any system, network, or device you do not own.
