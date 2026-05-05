@@ -13,7 +13,7 @@ This homelab serves as a safe, isolated environment where I can:
 
 ## 🛠️ Lab Environment
 ```
-[Host: Windows 11 IoT LTSC]
+                    [Host: Windows 11 IoT LTSC]
                     [VMware Workstation Pro]
                               │
               ┌───────────────┴───────────────┐
@@ -91,6 +91,9 @@ This homelab serves as a safe, isolated environment where I can:
 - TCM Security 2025 Black Friday CTF — Successfully completed the prompt injection challenge to earn a free training entry. Writeup forthcoming as part of a planned AI/LLM security series including Lakera Gandalf and similar exercises.
 
 **In Progress:**
+- CompTIA Security+
+
+**Future Goals:**
 - CompTIA CySA+ (planned summer 2026)
 - BloodHound and AD attack chains in the lab
 - Burp Suite Professional workflows on intentionally vulnerable web apps (DVWA, Juice Shop)
