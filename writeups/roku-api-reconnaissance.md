@@ -15,6 +15,8 @@ Conducted reconnaissance and interaction with a Roku streaming device to demonst
 - **Attack Platform:** Kali Linux Virtual Machine with Nmap and curl
 - **Target Device:** Roku 3920RW streaming player
 
+**Note:** All IP addresses in this document have been changed to standard RFC1918 examples to protect actual network details. The methodology and findings are accurate.
+
 ## Tools Used
 - **Nmap** - Network scanning and service detection
 - **curl** - HTTP/API interaction and testing
@@ -218,6 +220,7 @@ This reconnaissance exercise successfully demonstrated how IoT devices expose AP
 
 ## Disclaimer
 
-This security assessment was conducted on a personally owned device within a private network environment with full authorization. All testing was performed for educational purposes to demonstrate network security assessment skills applicable to professional cybersecurity roles.
+This work was conducted with full authorization in an environment I own and control. All testing was performed for educational purposes to demonstrate skills applicable to professional cybersecurity roles.
 
-**Important:** Unauthorized access to devices or networks is illegal. This documentation is for educational and portfolio purposes only. Always obtain explicit written permission before conducting security assessments on any device or network you do not own.
+**Important:** Unauthorized access to computer systems, networks, or devices is illegal. This documentation is for educational and portfolio purposes only. Always obtain explicit written permission before conducting security assessments on any system, network, or device you do not own.
+
