@@ -26,7 +26,7 @@ Conducted reconnaissance and interaction with a Roku streaming device to demonst
 
 **Network scan to identify Roku device:**
 ```bash
-nmap [NETWORK_RANGE]
+nmap 192.168.1.0/24
 ```
 
 **Results:**
@@ -38,7 +38,7 @@ nmap [NETWORK_RANGE]
 
 **Test Roku ECP API availability:**
 ```bash
-curl http://[ROKU_IP]:8060
+curl http://192.168.1.50:8060
 ```
 
 **Response:**
@@ -52,7 +52,7 @@ Successfully retrieved device XML information including:
 
 **Query installed applications:**
 ```bash
-curl http://[ROKU_IP]:8060/query/apps
+curl http://192.168.1.50:8060/query/apps
 ```
 
 **Key Finding:** Device returned complete list of installed applications, indicating that **Limited Mode was disabled**.
@@ -70,7 +70,7 @@ curl http://[ROKU_IP]:8060/query/apps
 
 **Query currently active application:**
 ```bash
-curl http://[ROKU_IP]:8060/query/active-app
+curl http://192.168.1.50:8060/query/active-app
 ```
 
 **Result:**
@@ -88,12 +88,12 @@ Device was on the Home screen (app ID 562859).
 
 Attempted to remotely launch YouTube application:
 ```bash
-curl -d '' http://[ROKU_IP]:8060/launch/837
+curl -d '' http://192.168.1.50:8060/launch/837
 ```
 
 **Verification:**
 ```bash
-curl http://[ROKU_IP]:8060/query/active-app
+curl http://192.168.1.50:8060/query/active-app
 ```
 
 **Result:** YouTube launched remotely (verified via active-app query)
@@ -107,7 +107,7 @@ curl http://[ROKU_IP]:8060/query/active-app
 
 Sent Home button command to return to main menu:
 ```bash
-curl -d '' http://[ROKU_IP]:8060/keypress/Home
+curl -d '' http://192.168.1.50:8060/keypress/Home
 ```
 
 **Result:** Device returned to Home screen
@@ -117,20 +117,20 @@ curl -d '' http://[ROKU_IP]:8060/keypress/Home
 ### API Endpoints Discovered
 
 **Device Information:**
-- `GET http://[ROKU_IP]:8060` - Returns device XML with model, manufacturer, services
-- `GET http://[ROKU_IP]:8060/query/device-info` - Detailed device information
+- `GET http://192.168.1.50:8060` - Returns device XML with model, manufacturer, services
+- `GET http://192.168.1.50:8060/query/device-info` - Detailed device information
 
 **Application Control:**
-- `GET http://[ROKU_IP]:8060/query/apps` - List all installed applications
-- `GET http://[ROKU_IP]:8060/query/active-app` - Get currently running app
-- `POST http://[ROKU_IP]:8060/launch/[APP_ID]` - Launch specific application
+- `GET http://192.168.1.50:8060/query/apps` - List all installed applications
+- `GET http://192.168.1.50:8060/query/active-app` - Get currently running app
+- `POST http://192.168.1.50:8060/launch/[APP_ID]` - Launch specific application
 
 **Remote Control:**
-- `POST http://[ROKU_IP]:8060/keypress/Home` - Home button
-- `POST http://[ROKU_IP]:8060/keypress/Select` - Select/OK button
-- `POST http://[ROKU_IP]:8060/keypress/Up/Down/Left/Right` - Navigation
-- `POST http://[ROKU_IP]:8060/keypress/Back` - Back button
-- `POST http://[ROKU_IP]:8060/keypress/Play` - Play/Pause
+- `POST http://192.168.1.50:8060/keypress/Home` - Home button
+- `POST http://192.168.1.50:8060/keypress/Select` - Select/OK button
+- `POST http://192.168.1.50:8060/keypress/Up/Down/Left/Right` - Navigation
+- `POST http://192.168.1.50:8060/keypress/Back` - Back button
+- `POST http://192.168.1.50:8060/keypress/Play` - Play/Pause
 
 ### Security Assessment
 
