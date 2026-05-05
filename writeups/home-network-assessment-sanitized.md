@@ -21,10 +21,12 @@ Conducted a comprehensive security assessment of a home network to identify conn
 - **MAC Vendor Lookup** - Device manufacturer identification
 
 ## Network Information
-- **Network Range:** [REDACTED]/24
-- **Gateway:** [REDACTED]
-- **Scan Host:** [REDACTED] (Pop!_OS workstation)
+- **Network Range:**  192.168.1.0/24
+- **Gateway:** 192.168.1.1
+- **Scan Host:** 192.168.1.100
 - **Total Devices Found:** 14 active hosts
+
+**Note:** All IP addresses in this document have been changed to standard RFC1918 examples to protect actual network details. The methodology and findings are accurate.
 
 ## Methodology
 
@@ -142,15 +144,15 @@ telnet [target-ip] [port]
 **API Testing:**
 ```bash
 # Device information query (allowed)
-curl http://[DEVICE_IP]:8060
+curl http://192.168.1.50:8060
 # Returns device XML information
 
 # App list query (blocked)
-curl http://[DEVICE_IP]:8060/query/apps
+curl http://192.168.1.50:8060/query/apps
 # Returns: "ECP command not allowed in Limited mode"
 
 # Remote control attempts (blocked)
-curl -d '' http://[DEVICE_IP]:8060/keypress/Home
+curl -d '' http://192.168.1.50:8060/keypress/Home
 # No response - command blocked
 ```
 
@@ -165,7 +167,7 @@ curl -d '' http://[DEVICE_IP]:8060/keypress/Home
 
 ---
 
-#### Device 6 - Pop!_OS Workstation (Scanning Host)
+#### Device 6 - Workstation (Scanning Host)
 **Open Ports:** NONE
 
 **Assessment:**
@@ -183,7 +185,7 @@ curl -d '' http://[DEVICE_IP]:8060/keypress/Home
 
 ## Security Analysis
 
-### Overall Network Security Posture: GOOD
+### Overall Network Security Posture: Low Risk
 
 **Strengths:**
 1. **Minimal Open Ports** - Most devices have no exposed services
@@ -249,7 +251,7 @@ curl -d '' http://[DEVICE_IP]:8060/keypress/Home
 
 ## Conclusion
 
-This home network security assessment successfully identified all active devices, enumerated services, and evaluated security postures. The network demonstrates good security practices with minimal attack surface, proper authentication controls, and effective security features.
+This assessment identified 14 active devices, enumerated their services, and evaluated their security posture. No critical vulnerabilities were found, and the devices examined demonstrate the security controls expected for a residential network. Findings and recommendations are detailed in the sections above.
 
 **Assessment Outcome:** Network is properly secured with no immediate vulnerabilities requiring remediation. All devices demonstrate appropriate security configurations for their intended purposes.
 
