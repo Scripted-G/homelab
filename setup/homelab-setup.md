@@ -1,10 +1,7 @@
 # Cybersecurity Homelab Setup
 
 ## Overview
-This document outlines the setup of my cybersecurity homelab environment 
-using KVM/QEMU on Fedora 44. The lab provides a safe, isolated environment 
-for practicing penetration testing, Active Directory administration, and 
-security operations.
+This document outlines the setup of my cybersecurity homelab environment using VMware Workstation Pro on Windows 11 IoT LTSC. The lab provides a safe, isolated environment for practicing penetration testing, Active Directory administration, and security operations.
 
 ## Host System
 
@@ -79,34 +76,28 @@ Domain-joined client for endpoint testing and AD practice.
 
 ### Kali Linux
 1. Download the official Kali Linux ISO from kali.org
-2. Open Virtual Machine Manager and create a new VM
+2. Open VMware Workstation Pro and create a new VM
 3. Select the downloaded ISO as installation media
 4. Allocate resources (4 GB RAM, 4 CPUs, 80 GB disk)
 5. Set network adapter to NAT
 6. Complete the standard Kali installation
 
 ### Metasploitable 2
-Metasploitable 2 is distributed as a VMware image (.vmdk) and must be 
-converted to a KVM-compatible format before use.
+Metasploitable 2 ships as a VMware virtual machine, so it imports directly 
+into VMware Workstation Pro without conversion.
 
 1. Download Metasploitable 2 from Rapid7 and extract the archive
-2. Convert the .vmdk disk to .qcow2 format:
-
-       qemu-img convert -f vmdk -O qcow2 Metasploitable.vmdk Metasploitable.qcow2
-
-3. Move the converted .qcow2 file to your VM storage location
-4. Open Virtual Machine Manager and create a new VM
-5. Select "Import existing disk image" and browse to the .qcow2 file
-6. Set OS type to Linux / Ubuntu (or Generic Linux)
-7. Allocate resources (2 GB RAM, 2 CPUs)
-8. Set network adapter to NAT
-9. Complete the VM creation
+2. Open VMware Workstation Pro
+3. File → Open → browse to the extracted Metasploitable.vmx file
+4. Adjust resources to 2 GB RAM, 2 CPUs if needed
+5. Set network adapter to NAT
+6. Power on the VM
 
 Default credentials: msfadmin / msfadmin
 
 ### WS22-DC (Windows Server 2022)
 1. Download the Windows Server 2022 ISO from Microsoft Evaluation Center
-2. Open Virtual Machine Manager and create a new VM
+2. Open VMware Workstation Pro and create a new VM
 3. Select the downloaded ISO as installation media
 4. Allocate resources (4 GB RAM, 4 CPUs, 60 GB disk)
 5. Add two network adapters — NAT and LAN Segment (Internal-Lab)
@@ -115,11 +106,11 @@ Default credentials: msfadmin / msfadmin
 
 ### Win11-Pro (Windows 11 Pro)
 1. Download the Windows 11 ISO from Microsoft
-2. Open Virtual Machine Manager and create a new VM
+2. Open VMware Workstation Pro and create a new VM
 3. Select the downloaded ISO as installation media
 4. Allocate resources (4 GB RAM, 4 CPUs, 64 GB disk)
 5. Set network adapter to LAN Segment (Internal-Lab)
-6. Add an emulated TPM device via Add Hardware → TPM (required for Windows 11). Ensure UEFI/OVMF firmware is selected.
+6. Encrypt the VM first (VM Settings → Options → Access Control → Encrypt) using a strong password, then add a TPM device (VM Settings → Hardware → Add → Trusted Platform Module). Ensure UEFI firmware is selected in VM Settings → Options → Advanced.
 7. Complete the Windows 11 installation
 8. Join the domain hosted on WS22-DC
 
