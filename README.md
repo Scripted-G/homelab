@@ -12,7 +12,7 @@ This homelab serves as a safe, isolated environment where I can:
 - Build hands-on experience with Active Directory attacks and defense
 
 ## 🛠️ Lab Environment
-
+```
 [Host: Windows 11 IoT LTSC]
                     [VMware Workstation Pro]
                               │
@@ -25,6 +25,7 @@ This homelab serves as a safe, isolated environment where I can:
        │             │                │             │
    Kali Linux  Metasploitable 2  Server 2022   Win 11 Pro
                                   (DC)         (Domain Client)
+```
 
 **Host System:**
 - OS: Windows 11 IoT LTSC (hardened: telemetry disabled, no Microsoft account, OneDrive blocked via Group Policy)
