@@ -14,7 +14,7 @@ This homelab serves as a safe, isolated environment where I can:
 ## 🛠️ Lab Environment
 
 **Host System:**
-- OS: Fedora 44 (Gnome)
+- OS: Windows 11 IoT LTSC
 - CPU: AMD Ryzen 9 9900X
 - RAM: 64GB DDR5
 - GPU: NVIDIA Asus TUF RTX 5070Ti
