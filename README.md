@@ -17,9 +17,9 @@ I use this homelab to gain hands-on experience with:
 - Active Directory
 - Virtual networking and segmentation
 - Security testing in controlled environments
-- Bash and Python automation
+- Bash scripting and Python programming
 - Docker and local AI infrastructure
-- Technical documentation and troubleshooting
+- Technical documentation, troubleshooting, and lab writeups
 
 ---
 
