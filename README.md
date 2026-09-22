@@ -1,141 +1,224 @@
-# Homelab
-Hands-on cybersecurity practice environment for offensive security, 
-penetration testing, and Active Directory research. This repository 
-documents practical security skills built through controlled lab exercises.
+# 🖥️ Homelab
+
+A hands-on environment for building practical skills across Linux, virtualization,
+networking, Windows administration, Active Directory, security testing, automation,
+and local AI infrastructure.
+
+This repository documents the systems I build, configure, troubleshoot, and test
+as I continue developing broader IT and cybersecurity skills.
+
+---
 
 ## 🎯 Purpose
-This homelab serves as a safe, isolated environment where I can:
-- Practice penetration testing methodologies
-- Exploit known vulnerabilities in a controlled setting
-- Document security assessments and findings
-- Develop security automation scripts
-- Build hands-on experience with Active Directory attacks and defense
 
-## 🛠️ Lab Environment
-```
-                    [Host: Windows 11 IoT LTSC]
-                    [VMware Workstation Pro]
-                              │
-              ┌───────────────┴───────────────┐
-              │                               │
-       [Offensive Lab]                  [AD Lab]
-       (NAT network)                    (Isolated network)
-              │                               │
-       ┌──────┴──────┐                ┌──────┴──────┐
-       │             │                │             │
-   Kali Linux  Metasploitable 2  Server 2022   Win 11 Pro
-                                  (DC)         (Domain Client)
-```
+I use this homelab to gain hands-on experience with:
 
-**Host System:**
-- OS: Windows 11 IoT LTSC (hardened: telemetry disabled, no Microsoft account, OneDrive blocked via Group Policy)
-- CPU: AMD Ryzen 9 9900X
-- RAM: 64GB DDR5
-- GPU: NVIDIA Asus TUF RTX 5070 Ti
-- Virtualization: VMware Workstation Pro
-- Lab VMs: UEFI + Secure Boot, TPM passthrough for Windows 11 clients, isolated virtual networks per lab segment
+- Linux system administration
+- QEMU/KVM/libvirt virtualization
+- Windows Server and Windows client administration
+- Active Directory
+- Virtual networking and segmentation
+- Security testing in controlled environments
+- Bash and Python automation
+- Docker and local AI infrastructure
+- Technical documentation and troubleshooting
 
-**Virtual Machines:**
+---
 
-*Offensive Lab (NAT network)*
-- **Kali Linux** — Primary attack platform
-- **Metasploitable 2** — Intentionally vulnerable target
+## 🧰 Host Environment
 
-*Active Directory Lab (Isolated network)*
-- **Windows Server 2022** — Domain Controller
-- **Windows 11 Pro** — Domain-joined client
+| Component | Current Setup |
+|---|---|
+| **Host OS** | Ubuntu 26.04 LTS |
+| **CPU** | AMD Ryzen 9 9900X |
+| **RAM** | 32 GB DDR5 |
+| **GPU** | Sapphire Pulse Radeon RX 9070 XT 16 GB |
+| **Virtualization** | QEMU/KVM + libvirt |
+| **VM Management** | virt-manager |
 
-**Key Tools Used:**
-- Metasploit Framework
-- Nmap
-- Wireshark
-- Netcat
-- Burp Suite
+---
+
+## 💾 Storage Layout
+
+| Drive | Current Use |
+|---|---|
+| **500 GB NVMe** | Ubuntu host OS and normal system use |
+| **2 TB NVMe** | Steam library and local AI workloads/data |
+| **1 TB NVMe** | VM disks, snapshots, and frequently used ISO images |
+| **Fourth NVMe** | Currently unassigned |
+
+---
+
+## 🗂️ Current Lab Architecture
+
+    Ubuntu 26.04 LTS Host
+    ├── QEMU/KVM + libvirt
+    │   ├── Kali Linux
+    │   ├── Metasploitable 2
+    │   ├── Windows Server 2022
+    │   ├── Windows 11 Pro
+    │   ├── Ubuntu 26.04 test VM
+    │   └── Jebetha project VM
+    │
+    ├── Local AI
+    │   ├── Ollama
+    │   ├── Open WebUI
+    │   ├── Docker
+    │   └── Radeon RX 9070 XT GPU acceleration
+    │
+    └── Storage
+        ├── 500 GB NVMe — Host OS
+        ├── 2 TB NVMe — Steam + AI data
+        ├── 1 TB NVMe — VMs + ISOs
+        └── Fourth NVMe — Unassigned
+
+---
+
+## 🖥️ Virtual Machines
+
+### Core Learning Environment
+
+- **Kali Linux** — main security-testing VM
+- **Metasploitable 2** — intentionally vulnerable target
+- **Windows Server 2022** — provisioned for Windows Server and future Active Directory work
+- **Windows 11 Pro** — provisioned for Windows administration and future domain-client work
+
+### Additional VMs
+
+- **Ubuntu 26.04** — temporary validation and testing VM
+- **Jebetha** — separate Kali-based VM used for an open-source project
+
+---
+
+## 🌐 Networking
+
+### Current State
+
+All VMs currently use the default libvirt NAT network.
+
+Dedicated segmentation has **not** yet been implemented on the current Ubuntu host.
+
+### Planned Work
+
+The next networking phase will focus on building a more realistic lab design with
+separate network segments for Windows/Active Directory and security testing.
+
+---
+
+## 🪟 Windows & Active Directory Lab
+
+The Windows Server 2022 and Windows 11 Pro VMs are installed and working, but the
+Active Directory environment has not yet been rebuilt on the current
+Ubuntu/QEMU/KVM host.
+
+### Planned Work
+
+- Configure Windows Server 2022 as a domain controller
+- Join the Windows 11 Pro client to the domain
+- Build the supporting virtual network
+- Practice users, groups, OUs, Group Policy, DNS, and domain administration
+- Document the rebuild as it progresses
+
+---
+
+## 🔐 Security Lab
+
+The current security lab includes:
+
+- **Kali Linux**
+- **Metasploitable 2**
+
+Both VMs are installed and usable. Metasploitable 2 is intentionally left in its
+vulnerable state for controlled lab exercises.
+
+Current security work includes reconnaissance, service enumeration, API testing,
+and exploitation of intentionally vulnerable systems.
+
+---
+
+## 🤖 Local AI Environment
+
+The Ubuntu host also runs a local AI environment built around:
+
+- **Ollama**
+- **Open WebUI**
+- **Docker**
+- AI model/data storage on the 2 TB NVMe
+- GPU-accelerated inference using the Radeon RX 9070 XT
+
+This environment gives me hands-on experience with local model hosting, Linux
+services, containers, storage layout, and GPU-backed inference.
+
+---
 
 ## 📁 Repository Structure
 
     homelab/
-    ├── setup/          # Lab configuration and setup guides
-    ├── writeups/       # Security assessment writeups
-    ├── scripts/        # Security automation scripts (in progress)
-    └── README.md       # This file
+    ├── setup/          # Environment setup and configuration documentation
+    ├── writeups/       # Lab exercises and technical writeups
+    ├── scripts/        # Automation and helper scripts
+    └── README.md
 
-## 🔍 Completed Exercises
+---
 
-###  Reconnaissance & Exploitation
+## 📝 Selected Writeups
 
-1. **vsftpd 2.3.4 Backdoor Exploitation**
-   - Exploited known backdoor vulnerability in vsftpd on Metasploitable 2
-   - Used Metasploit Framework for exploitation
-   - Gained remote shell access with root privileges
-   - [Full writeup →](writeups/vsftpd-exploit-writeup.md)
+### Home Network Security Assessment
 
-2. **Home Network Security Assessment**
-   - Comprehensive scan of home network infrastructure
-   - Identified active hosts, open services, and security posture
-   - Documented findings and recommendations
-   - [Full writeup →](writeups/home-network-assessment-sanitized.md)
+Authorized assessment of a personal home network using reconnaissance, service
+enumeration, and device identification techniques.
 
-3. **Roku API Reconnaissance**
-   - Discovered and enumerated Roku ECP API endpoints
-   - Tested device security controls
-   - Documented attack surface and remediation
-   - [Full writeup →](writeups/roku-api-reconnaissance.md)
+[Read the writeup](writeups/home-network-assessment-sanitized.md)
 
-## 📚 Setup Documentation
-- [Homelab Setup Guide →](setup/homelab-setup.md)
+### Roku API Reconnaissance
 
-## 🎓 Learning Path
+Exploration of the Roku External Control Protocol using Nmap and `curl`, including
+device discovery, API enumeration, and control testing.
 
-**Completed:**
-- TCM Security 2025 Black Friday CTF — Successfully completed the prompt injection challenge to earn a free training entry. Writeup forthcoming as part of a planned AI/LLM security series including Lakera Gandalf and similar exercises.
+[Read the writeup](writeups/roku-api-reconnaissance.md)
 
-**In Progress:**
-- CompTIA Security+
+### vsftpd 2.3.4 Backdoor on Metasploitable 2
 
-**Future Goals:**
-- CompTIA CySA+ (planned summer 2026)
-- BloodHound and AD attack chains in the lab
-- Burp Suite Professional workflows on intentionally vulnerable web apps (DVWA, Juice Shop)
-- Building offensive tooling in C and Go
-- OSCP preparation
+Controlled exploitation exercise against the intentionally vulnerable
+Metasploitable 2 VM using Nmap and Metasploit.
 
-## 🔐 Skills Demonstrated
-- **Reconnaissance & Enumeration** — Network mapping, service and version 
-  identification, IoT API discovery
-- **Exploitation** — Leveraging known vulnerabilities using industry-standard tools
-- **Active Directory** — Domain controller setup, domain joining, 
-  environment configuration
-- **Documentation** — Clear, professional security writeups with methodology, 
-  findings, and remediation
-- **Lab Management** — Building and maintaining isolated testing environments
+[Read the writeup](writeups/vsftpd-exploit-writeup.md)
 
-## ⚠️ Ethical Use Disclaimer
-All exercises in this repository are conducted in a controlled, isolated lab 
-environment on systems I own or have explicit permission to test. This work 
-is for educational purposes only.
+---
 
-**I do not engage in or condone:**
-- Unauthorized access to computer systems
-- Malicious hacking or illegal activities
-- Testing on systems without explicit permission
+## 📚 Current Learning Areas
 
-## 📝 How to Use This Repository
+- Linux system administration
+- Networking and network segmentation
+- Active Directory
+- Bash automation
+- Python
+- QEMU/KVM/libvirt
+- Docker
+- Local AI infrastructure
+- Security testing fundamentals
 
-**For Recruiters/Employers:**
-- Browse the [writeups/](writeups/) folder for security assessment documentation
-- Review [setup/](setup/) to understand lab configuration
-- Check commit history to see ongoing development
+---
 
-**For Fellow Learners:**
-- Use the setup guide as reference for your own lab
-- Writeups include step-by-step methodology
-- Feel free to reach out with questions
+## 🚧 Planned Work
 
-## 🔄 Updates
-This repository is actively maintained and updated with new exercises, 
-writeups, and scripts.
+- Build segmented homelab networking
+- Rebuild the Active Directory environment
+- Expand automation and helper scripts
+- Continue documenting security exercises
+- Expand local AI infrastructure documentation
 
-## 📫 Connect
-- **LinkedIn:** [linkedin.com/in/gabriel-orta](https://linkedin.com/in/gabriel-orta)
-- **GitHub:** [github.com/Scripted-G](https://github.com/Scripted-G)
+---
+
+## ⚖️ Responsible Use
+
+Security testing documented in this repository is performed only on systems I own,
+intentionally vulnerable lab targets, or systems for which I have explicit
+authorization.
+
+---
+
+## 🔗 Connect
+
+- [LinkedIn](https://linkedin.com/in/gabriel-orta)
+- [GitHub](https://github.com/Scripted-G)
