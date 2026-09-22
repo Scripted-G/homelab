@@ -1,8 +1,6 @@
 # 🖥️ Homelab
 
-A hands-on environment for building practical skills across Linux, virtualization,
-networking, Windows administration, Active Directory, security testing, automation,
-and local AI infrastructure.
+A hands-on environment for building practical skills across Linux, virtualization, networking, Windows administration, Active Directory, security testing, scripting, and local AI infrastructure.
 
 This repository documents the systems I build, configure, troubleshoot, and test
 as I continue developing broader IT and cybersecurity skills.
