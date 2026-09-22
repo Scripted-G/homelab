@@ -1,265 +1,295 @@
 # Home Network Security Assessment
 
 ## Overview
-Conducted a comprehensive security assessment of a home network to identify connected devices, open ports, and potential security vulnerabilities. This exercise demonstrates network reconnaissance techniques and device identification methodologies used in professional security assessments.
+
+This writeup documents an authorized assessment of a personal home network using
+basic reconnaissance, service enumeration, and device-identification techniques.
+
+The goal was to identify active hosts, review exposed services, and document areas
+that may warrant additional hardening or segmentation.
+
+---
 
 ## Objective
-- Map all devices on the home network
-- Identify open ports and running services
-- Assess security posture of networked devices
-- Practice reconnaissance and enumeration techniques
 
-## Lab Environment
-- **Environment Type:** Personal home network (authorized testing)
-- **Attack Platform:** Kali Linux Virtual Machine with Nmap
-- **Network Type:** Standard residential network with mixed devices
+- Identify active devices on the local network
+- Enumerate open ports and running services
+- Identify device types and manufacturers where possible
+- Review the exposed attack surface of selected devices
+- Document practical remediation ideas
+- Practice network reconnaissance and technical documentation
+
+---
+
+## Environment
+
+- **Environment:** Personal home network
+- **Authorization:** Full authorization; all tested systems were personally owned or under my control
+- **Primary tools:** Kali Linux, Nmap, `curl`, Telnet, MAC vendor lookup
+- **Network type:** Standard residential network with mixed infrastructure, endpoint, and IoT devices
+
+> **Privacy note:** IP addresses in this document are represented with RFC1918 example
+> addresses. The methodology and observations are based on the original assessment.
+
+---
 
 ## Tools Used
-- **Nmap** - Network scanning and service detection
-- **curl** - HTTP/API interaction and testing
-- **telnet** - Service connection testing
-- **MAC Vendor Lookup** - Device manufacturer identification
 
-## Network Information
-- **Network Range:**  192.168.1.0/24
-- **Gateway:** 192.168.1.1
-- **Scan Host:** 192.168.1.100
-- **Total Devices Found:** 14 active hosts
+- **Nmap** — host discovery, port scanning, and service/version detection
+- **curl** — HTTP and API interaction
+- **Telnet** — basic service connectivity testing
+- **MAC vendor lookup** — manufacturer identification
 
-**Note:** All IP addresses in this document have been changed to standard RFC1918 examples to protect actual network details. The methodology and findings are accurate.
+---
 
 ## Methodology
 
-### Phase 1: Network Discovery
+### 1. Host Discovery
 
-**Initial network scan to identify live hosts:**
+Initial discovery scan:
+
 ```bash
 nmap [NETWORK_RANGE]
 ```
 
-**Results:**
-- 14 hosts discovered on the network
-- Mixture of network infrastructure, IoT devices, and personal computers
+**Result:** 14 active hosts were identified.
 
-### Phase 2: Service Enumeration
+The discovered devices included network infrastructure, personal computers,
+streaming devices, and IoT equipment.
 
-**Detailed service scan on devices with open ports:**
+---
+
+### 2. Service Enumeration
+
+Selected hosts were scanned for exposed services:
+
 ```bash
-nmap -sV [target-ip]
+nmap -sV [TARGET_IP]
 ```
 
-**Comprehensive port scan (all 65,535 ports):**
+A full TCP port scan was also used where deeper enumeration was useful:
+
 ```bash
-nmap -sV -p- [target-ip]
+nmap -sV -p- [TARGET_IP]
 ```
 
-### Phase 3: Device Identification
+---
 
-**MAC address lookup for unknown devices:**
-- Used macvendors.com to identify device manufacturers
-- Cross-referenced with known household devices
+### 3. Device Identification
 
-### Phase 4: Security Assessment
+Unknown devices were compared against MAC vendor information and known household
+equipment to determine likely device type and manufacturer.
 
-**Tested service responses and API endpoints:**
+---
+
+### 4. Service and API Testing
+
+Where appropriate, exposed services were queried directly:
+
 ```bash
-curl http://[target-ip]:[port]
-telnet [target-ip] [port]
+curl http://[TARGET_IP]:[PORT]
 ```
+
+```bash
+telnet [TARGET_IP] [PORT]
+```
+
+Testing remained limited to the local network and personally owned devices.
+
+---
 
 ## Findings
 
-### Device Inventory
+### Primary Router / Gateway
 
-#### Device 1 - Primary Router/Gateway
-**Open Ports:**
-- 53/tcp (DNS)
-- 80/tcp (HTTP - Admin interface)
-- 443/tcp (HTTPS - Admin interface)
+**Observed TCP services**
+- 53 — DNS
+- 80 — HTTP management interface
+- 443 — HTTPS management interface
 
-**Assessment:** Standard router configuration. Web interface requires authentication.
-
----
-
-#### Device 2 - Tuya Smart Device (Smart Lock)
-**Open Ports:**
-- 6668/tcp (Tuya proprietary protocol)
-
-**Vendor:** Tuya Smart Inc
-
-**Services Identified:**
-- Custom IoT communication protocol
-- Does not respond to standard commands
-- Connects to Tuya cloud services
-
-**Security Assessment:**
-- Minimal attack surface (single proprietary port)
-- Does not expose web interface
-- No standard protocols exposed
+The device exposed expected network-management services. Administrative interfaces
+required authentication.
 
 ---
 
-#### Device 3 - Netgear WiFi Extender/Repeater
-**Open Ports:**
-- 53/tcp (DNS - dnsmasq 2.85)
-- 80/tcp (HTTP - Requires authentication)
-- 443/tcp (HTTPS - Requires authentication)
+### Tuya Smart Device
 
-**Vendor:** Netgear
+**Observed TCP service**
+- 6668 — Tuya proprietary protocol
 
-**Services Identified:**
-- dnsmasq DNS server
-- Web administration interface (password protected)
+The device did not expose a conventional web administration interface during the
+assessment.
 
-**Security Assessment:**
-- Authentication required for web interface (401 Unauthorized)
-- Legitimate network services only
-- Proper access controls in place
+This reduced the number of directly exposed standard services, although the
+proprietary service still represents part of the device's network attack surface.
 
 ---
 
-#### Device 4 - Roku Streaming Device
-**Open Ports:**
-- 7000/tcp (RTSP - AirTunes rtspd 377.40.00)
-- 8060/tcp (UPnP - Roku External Control Protocol)
-- 40133/tcp (Unknown service)
+### Netgear Wi-Fi Extender / Repeater
 
-**Vendor:** Roku
+**Observed TCP services**
+- 53 — DNS / dnsmasq
+- 80 — HTTP management interface
+- 443 — HTTPS management interface
 
-**Device Details:**
-- Model: Roku 3920RW
-- Roku Streaming Player Network Media
+The web interfaces required authentication.
 
-**Services Identified:**
-- RTSP streaming service (AirPlay functionality)
-- External Control Protocol API (remote control)
-- Additional proprietary service
-
-**Security Assessment:**
-- **Limited Mode enabled** - Blocks external control commands
-- ECP API returns: "ECP command not allowed in Limited mode"
-- Minimal attack surface
-- Properly secured with access restrictions
-
-**API Testing:**
-```bash
-# Device information query (allowed)
-curl http://192.168.1.50:8060
-# Returns device XML information
-
-# App list query (blocked)
-curl http://192.168.1.50:8060/query/apps
-# Returns: "ECP command not allowed in Limited mode"
-
-# Remote control attempts (blocked)
-curl -d '' http://192.168.1.50:8060/keypress/Home
-# No response - command blocked
-```
+The exposed services were consistent with the device's expected network-management
+role.
 
 ---
 
-#### Device 5 - Unknown Network Device
-**Open Ports:**
-- 80/tcp (HTTP)
-- 443/tcp (HTTPS)
+### Roku Streaming Device
 
-**Assessment:** Network device with web interface. Further investigation required.
+**Observed services included**
+- 7000/tcp — streaming-related service
+- 8060/tcp — Roku External Control Protocol (ECP)
+- an additional proprietary service on a high TCP port
 
----
+The Roku ECP interface was reachable from the local network.
 
-#### Device 6 - Workstation (Scanning Host)
-**Open Ports:** NONE
+During the dedicated Roku API exercise, the device accepted ECP queries and control
+commands, including application enumeration and remote-control actions. This behavior
+is documented separately in:
 
-**Assessment:**
-- All ports closed - excellent security posture
-- Firewall properly configured
-- No unnecessary services exposed
-- Secure workstation configuration
+[Roku API Reconnaissance](roku-api-reconnaissance.md)
 
----
-
-#### Additional Devices (8 devices)
-**Open Ports:** None detected
-
-**Assessment:** Likely mobile devices (phones, tablets) and other consumer electronics with no services exposed. Good security posture.
-
-## Security Analysis
-
-### Overall Network Security Posture: Low Risk
-
-**Strengths:**
-1. **Minimal Open Ports** - Most devices have no exposed services
-2. **Authentication Required** - Network devices require login credentials
-3. **IoT Security Controls** - Smart devices use proprietary protocols with limited attack surface
-4. **Roku Limited Mode** - Prevents unauthorized remote control
-5. **Workstation Security** - Personal computer properly locked down
-
-**Observations:**
-1. **Three-tier network infrastructure** - ISP modem + WiFi repeaters for coverage
-2. **Mixed device ecosystem** - Network infrastructure, IoT devices, streaming devices, personal computers
-3. **Proper segmentation** - Devices only expose necessary services
-4. **Access controls functioning** - Web interfaces require authentication
-
-### Attack Surface Assessment
-**Devices with no exposed services (lowest risk):**
-- Personal workstation - All ports closed
-- Mobile devices - No services exposed
-- Roku streaming device - Limited Mode blocks remote control
-
-**Devices with exposed services (require authentication and good password hygiene):**
-- Router/Gateway - Web admin interface authenticated
-- WiFi Extender - Web admin interface authenticated
-- Smart Lock - Proprietary protocol, no standard surface
-
-## Key Takeaways
-
-### Security Lessons Learned
-1. **Security settings work** - Limited Mode on Roku effectively blocked unauthorized access
-2. **Minimal services = smaller attack surface** - Devices with fewer open ports are more secure
-3. **Authentication matters** - Web interfaces protected by login prevent casual exploitation
-4. **IoT can be secure** - Proprietary protocols and limited exposure reduce risk
-5. **Proper workstation hardening** - Closed ports indicate good security practices
-
-## Remediation Recommendations
-
-**Current State:** Network is well-secured with no critical vulnerabilities identified.
-
-**Best Practices Observed:**
-- Minimal services exposed
-- Authentication on admin interfaces
-- IoT devices properly configured
-- Workstation firewall active
-
-**Optional Enhancements:**
-1. **Network Segmentation** - Consider VLAN separation for IoT devices
-2. **Regular Updates** - Ensure all network devices have latest firmware
-3. **Strong Passwords** - Verify router/repeater admin passwords are complex
-4. **Monitor Unknown Devices** - Investigate unidentified devices further
-
-## Ethical Considerations
-
-**Scope of Assessment:**
-- All devices scanned are on personal home network
-- Full authorization to test own devices
-- No attempts to bypass security controls when blocked
-- Assessment stopped at security boundaries
-
-**Responsible Disclosure:**
-- No vulnerabilities requiring disclosure were discovered
-- All devices demonstrated appropriate security controls
-- Security features functioned as designed
-
-## Conclusion
-
-This assessment identified 14 active devices, enumerated their services, and evaluated their security posture. No critical vulnerabilities were found, and the devices examined demonstrate the security controls expected for a residential network. Findings and recommendations are detailed in the sections above.
+The key security consideration is that ECP control depends heavily on local-network
+access and the Roku device's control settings.
 
 ---
 
-**Date:** November 2025  
-**Environment:** Personal Home Lab Network  
+### Unidentified Network Device
 
-## Disclaimer
+**Observed TCP services**
+- 80 — HTTP
+- 443 — HTTPS
 
-This work was conducted with full authorization in an environment I own and control. All testing was performed for educational purposes to demonstrate skills applicable to professional cybersecurity roles.
+The device exposed a web interface but was not conclusively identified during the
+assessment.
 
-**Important:** Unauthorized access to computer systems, networks, or devices is illegal. This documentation is for educational and portfolio purposes only. Always obtain explicit written permission before conducting security assessments on any system, network, or device you do not own.
+Further investigation would be appropriate before drawing conclusions about its role
+or security posture.
+
+---
+
+### Scanning Workstation
+
+No listening TCP ports were identified by the scan performed during this assessment.
+
+This indicates that the workstation was not exposing obvious TCP services at that
+time. It should not be interpreted as proof that the system is fully secure.
+
+---
+
+### Additional Devices
+
+Several additional devices did not expose TCP services during the scan.
+
+These appeared to include mobile devices and consumer electronics.
+
+Again, absence of detected listening ports reduces visible attack surface but does
+not by itself establish overall device security.
+
+---
+
+## Security Observations
+
+Several positive characteristics were observed:
+
+- Many devices exposed few or no TCP services
+- Administrative web interfaces required authentication
+- The workstation did not expose obvious listening TCP services
+- Network infrastructure exposed services consistent with its expected role
+
+The assessment also identified areas worth improving:
+
+- IoT and general-purpose systems shared the same residential network
+- Device segmentation had not been implemented
+- One device remained unidentified
+- Local-network APIs such as Roku ECP demonstrated why trusted LAN access still matters
+- Internet-facing exposure and router configuration should continue to be reviewed separately
+
+---
+
+## Attack Surface Summary
+
+### Lower visible TCP exposure during this assessment
+
+- Scanning workstation
+- Several mobile/consumer devices
+
+### Devices with identifiable exposed services
+
+- Router / gateway
+- Wi-Fi extender
+- Tuya smart device
+- Roku streaming device
+- Unidentified web-enabled device
+
+The presence of an open service is not automatically a vulnerability. Each service
+needs to be evaluated in the context of authentication, configuration, software
+version, network placement, and intended functionality.
+
+---
+
+## Recommendations
+
+### Network Segmentation
+
+Consider separating IoT devices from general-purpose computers using VLANs or another
+segmented network design where supported by the network infrastructure.
+
+### Firmware and Software Maintenance
+
+Keep supported routers, extenders, streaming devices, and IoT equipment current with
+vendor security updates.
+
+### Administrative Access
+
+Continue using strong credentials for router and network-device management interfaces.
+
+### Unknown Devices
+
+Identify and document devices that cannot immediately be accounted for.
+
+### Local API Exposure
+
+Review whether local-control features are needed on devices that expose APIs or remote
+control functionality to the LAN.
+
+### Ongoing Monitoring
+
+Repeat discovery and service-enumeration checks periodically to identify unexpected
+changes.
+
+---
+
+## Key Lessons
+
+This exercise reinforced several practical concepts:
+
+- Host discovery is only the beginning of a network assessment
+- Service enumeration provides more useful context than host discovery alone
+- Open ports must be interpreted in relation to device purpose and configuration
+- IoT devices can expose meaningful local-network interfaces even when they are not
+  internet-facing
+- A lack of exposed services does not prove that a device is secure
+- Network segmentation can reduce the impact of compromised or untrusted devices
+- Clear documentation is important when distinguishing observations from conclusions
+
+---
+
+## Responsible Use
+
+This assessment was conducted only on a personal network and devices under my control.
+
+No testing was performed against systems without authorization.
+
+---
+
+## Assessment Information
+
+- **Date:** November 2025
+- **Environment:** Personal home network
+- **Active hosts identified:** 14
