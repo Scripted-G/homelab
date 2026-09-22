@@ -168,7 +168,7 @@ services, containers, storage layout, and GPU-backed inference.
 Authorized assessment of a personal home network using reconnaissance, service
 enumeration, and device identification techniques.
 
-[Read the writeup](writeups/home-network-assessment-sanitized.md)
+[Read the writeup](writeups/home-network-assessment.md)
 
 ### Roku API Reconnaissance
 
