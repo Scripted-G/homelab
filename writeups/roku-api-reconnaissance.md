@@ -226,8 +226,7 @@ The practical impact demonstrated in this exercise was limited to:
 - application launch
 - navigation control
 
-This exercise did **not** demonstrate remote internet exploitation, authentication
-bypass of Roku Limited mode, or compromise of the underlying Roku operating system.
+This exercise did not demonstrate remote internet exploitation, circumvention of Roku's local-control restrictions, or compromise of the underlying Roku operating system.
 
 ---
 
