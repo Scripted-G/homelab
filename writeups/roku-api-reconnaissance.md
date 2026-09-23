@@ -31,8 +31,7 @@ local-network access.
 - **Primary tools:** Kali Linux, Nmap, `curl`
 - **API:** Roku External Control Protocol (ECP)
 
-> **Privacy note:** IP addresses in this document are represented with RFC1918 example
-> addresses. The methodology and observed behavior are based on the original exercise.
+> **Privacy note:** IP addresses in this document are represented with representative private RFC1918 addresses. The methodology and observed behavior are based on the original exercise.
 
 ---
 
@@ -40,7 +39,6 @@ local-network access.
 
 - **Nmap** — host discovery and service enumeration
 - **curl** — HTTP requests and API interaction
-- **Roku ECP** — local control and device-query interface
 
 ---
 
@@ -207,22 +205,9 @@ Roku also documents that, beginning with Roku OS 14.1, several ECP commands — 
 `keypress`, `keydown`, and `keyup` — require **Control by mobile apps** to be set to
 **Enabled**.
 
-A Roku developer representative stated that this Roku OS 14.1 change was made to make
-devices more secure by default.
-
 That is relevant to this exercise because the Roku tested here accepted navigation and
 application-control commands from the local network. The behavior observed during the
 exercise therefore reflects a device configuration that permitted those ECP functions.
-
-### About Limited Mode bypasses
-
-During a review of Roku's current ECP documentation, Roku support material, Roku's
-published OS security-update history, and public vulnerability information, I did not
-find a publicly documented bypass specifically for Roku's **Limited** control mode.
-
-That statement is intentionally narrow: it does **not** prove that no bypass or exploit
-exists. It only records that none was found in the public sources reviewed for this
-writeup.
 
 ---
 
@@ -251,7 +236,7 @@ bypass of Roku Limited mode, or compromise of the underlying Roku operating syst
 Potential ways to reduce unnecessary local-control exposure include:
 
 - review the Roku's **Control by mobile apps** setting
-- use **Limited** mode when full local control is not required
+- use Limited mode when broader local-control features are not required
 - avoid exposing device-control services beyond the local network
 - use network segmentation to separate IoT devices from general-purpose systems
 - keep the Roku device and supporting network infrastructure updated
