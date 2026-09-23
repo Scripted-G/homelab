@@ -26,7 +26,7 @@ that may warrant additional hardening or segmentation.
 - **Environment:** Personal home network
 - **Authorization:** Full authorization; all tested systems were personally owned or under my control
 - **Primary tools:** Kali Linux, Nmap, `curl`, Telnet, MAC vendor lookup
-- **Network type:** Standard residential network with mixed infrastructure, endpoint, and IoT devices
+- **Network type:** Standard residential network with mixed infrastructure, endpoints, and IoT devices
 
 > **Privacy note:** IP addresses in this document are represented with RFC1918 example
 > addresses. The methodology and observations are based on the original assessment.
@@ -260,7 +260,7 @@ control functionality to the LAN.
 
 ### Ongoing Monitoring
 
-Repeat discovery and service-enumeration checks periodically to identify unexpected
+Repeat discovery and service enumeration checks periodically to identify unexpected
 changes.
 
 ---
