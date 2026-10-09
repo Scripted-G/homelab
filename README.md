@@ -1,6 +1,7 @@
+[README.md](https://github.com/user-attachments/files/33264860/README.md)
 # 🖥️ Homelab
 
-A hands-on environment for building practical skills across Linux, virtualization, networking, Windows administration, Active Directory, security testing, scripting, and local AI infrastructure.
+A hands-on environment for building practical skills across Windows administration, Active Directory, virtualization, Linux, networking, security testing, scripting, and local AI.
 
 This repository documents the systems I build, configure, troubleshoot, and test
 as I continue developing broader IT and cybersecurity skills.
@@ -11,14 +12,14 @@ as I continue developing broader IT and cybersecurity skills.
 
 I use this homelab to gain hands-on experience with:
 
-- Linux system administration
-- QEMU/KVM/libvirt virtualization
 - Windows Server and Windows client administration
 - Active Directory
+- Virtualization with VMware Workstation Pro
+- Linux system administration
 - Virtual networking and segmentation
 - Security testing in controlled environments
 - Bash scripting and Python programming
-- Docker and local AI infrastructure
+- Local AI models
 - Technical documentation, troubleshooting, and lab writeups
 
 ---
@@ -27,12 +28,12 @@ I use this homelab to gain hands-on experience with:
 
 | Component | Current Setup |
 |---|---|
-| **Host OS** | Ubuntu 26.04 LTS |
+| **Host OS** | Windows 11 Pro |
 | **CPU** | AMD Ryzen 9 9900X |
-| **RAM** | 32 GB DDR5 |
+| **RAM** | 64 GB DDR5 |
 | **GPU** | Sapphire Pulse Radeon RX 9070 XT 16 GB |
-| **Virtualization** | QEMU/KVM + libvirt |
-| **VM Management** | virt-manager |
+| **Virtualization** | VMware Workstation Pro |
+| **VM Organization** | Library folders: `SecLab` and `Dev` |
 
 ---
 
@@ -40,51 +41,46 @@ I use this homelab to gain hands-on experience with:
 
 | Drive | Current Use |
 |---|---|
-| **500 GB NVMe** | Ubuntu host OS and normal system use |
-| **2 TB NVMe** | Steam library and local AI workloads/data |
-| **1 TB NVMe** | VM disks, snapshots, and frequently used ISO images |
-| **Fourth NVMe** | Currently unassigned |
+| **500 GB NVMe** | Windows 11 host OS and normal system use |
+| **2 TB NVMe** | Steam library and local AI models/data |
+| **1 TB NVMe (D:)** | Homelab: VM disks (`D:\VM`) and ISO images (`D:\ISO`) |
 
 ---
 
 ## 🗂️ Current Lab Architecture
 
-    Ubuntu 26.04 LTS Host
-    ├── QEMU/KVM + libvirt
-    │   ├── Kali Linux
-    │   ├── Metasploitable 2
-    │   ├── Windows Server 2022
-    │   ├── Windows 11 Pro
-    │   ├── Ubuntu 26.04 test VM
-    │   └── Jebetha project VM
+    Windows 11 Pro Host
+    ├── VMware Workstation Pro
+    │   ├── SecLab
+    │   │   ├── Kali Linux
+    │   │   ├── Metasploitable 2
+    │   │   ├── Windows Server 2022
+    │   │   └── Windows 11 Pro
+    │   └── Dev
+    │       └── Ubuntu 26.04 test VM
     │
     ├── Local AI
-    │   ├── Ollama
-    │   ├── Open WebUI
-    │   ├── Docker
-    │   └── Radeon RX 9070 XT GPU acceleration
+    │   └── LM Studio
     │
     └── Storage
-        ├── 500 GB NVMe — Host OS
-        ├── 2 TB NVMe — Steam + AI data
-        ├── 1 TB NVMe — VMs + ISOs
-        └── Fourth NVMe — Unassigned
+        ├── 500 GB NVMe: Host OS
+        ├── 2 TB NVMe: Steam + AI data
+        ├── 1 TB NVMe: VMs + ISOs
 
 ---
 
 ## 🖥️ Virtual Machines
 
-### Core Learning Environment
+### SecLab
 
-- **Kali Linux** — main security-testing VM
-- **Metasploitable 2** — intentionally vulnerable target
-- **Windows Server 2022** — provisioned for Windows Server and future Active Directory work
-- **Windows 11 Pro** — provisioned for Windows administration and future domain-client work
+- **Kali Linux**: main security-testing VM
+- **Metasploitable 2**: intentionally vulnerable target
+- **Windows Server 2022**: provisioned for Windows Server and Active Directory work
+- **Windows 11 Pro**: provisioned for Windows administration and domain-client work
 
-### Additional VMs
+### Dev
 
-- **Ubuntu 26.04** — temporary validation and testing VM
-- **Jebetha** — separate Kali-based VM used for an open-source project
+- **Ubuntu 26.04**: temporary validation and testing VM
 
 ---
 
@@ -92,9 +88,10 @@ I use this homelab to gain hands-on experience with:
 
 ### Current State
 
-All VMs currently use the default libvirt NAT network.
+All VMs currently use VMware Workstation's default NAT networking.
 
-Dedicated segmentation has **not** yet been implemented on the current Ubuntu host.
+Dedicated network segmentation has **not** yet been implemented in the current
+VMware environment.
 
 ### Planned Work
 
@@ -105,9 +102,9 @@ separate network segments for Windows/Active Directory and security testing.
 
 ## 🪟 Windows & Active Directory Lab
 
-The Windows Server 2022 and Windows 11 Pro VMs are installed and working, but the
-Active Directory environment has not yet been rebuilt on the current
-Ubuntu/QEMU/KVM host.
+The Windows Server 2022 and Windows 11 Pro VMs are installed and updated, but the
+Active Directory environment has not yet been built in the current VMware
+environment.
 
 ### Planned Work
 
@@ -115,7 +112,7 @@ Ubuntu/QEMU/KVM host.
 - Join the Windows 11 Pro client to the domain
 - Build the supporting virtual network
 - Practice users, groups, OUs, Group Policy, DNS, and domain administration
-- Document the rebuild as it progresses
+- Document the build as it progresses
 
 ---
 
@@ -129,23 +126,18 @@ The current security lab includes:
 Both VMs are installed and usable. Metasploitable 2 is intentionally left in its
 vulnerable state for controlled lab exercises.
 
-Current security work includes reconnaissance, service enumeration, API testing,
-and exploitation of intentionally vulnerable systems.
+Security work to date includes reconnaissance, service enumeration, API testing,
+and exploitation of intentionally vulnerable systems. The writeups below were
+completed on an earlier version of this lab that ran on Ubuntu with
+QEMU/KVM/libvirt, before I moved the lab to a Windows host with VMware
+Workstation Pro.
 
 ---
 
-## 🤖 Local AI Environment
+## 🤖 Local AI
 
-The Ubuntu host also runs a local AI environment built around:
-
-- **Ollama**
-- **Open WebUI**
-- **Docker**
-- AI model/data storage on the 2 TB NVMe
-- GPU-accelerated inference using the Radeon RX 9070 XT
-
-This environment gives me hands-on experience with local model hosting, Linux
-services, containers, storage layout, and GPU-backed inference.
+I run local language models on the Windows host using **LM Studio**. This is a
+newer area for me, and I'm using it to learn how local model hosting works.
 
 ---
 
@@ -186,25 +178,23 @@ Metasploitable 2 VM using Nmap and Metasploit.
 
 ## 📚 Current Learning Areas
 
-- Linux system administration
+- Windows Server and Active Directory
 - Networking and network segmentation
-- Active Directory
+- Linux system administration
+- VMware Workstation Pro
 - Bash automation
 - Python
-- QEMU/KVM/libvirt
-- Docker
-- Local AI infrastructure
 - Security testing fundamentals
+- Local AI (LM Studio)
 
 ---
 
 ## 🚧 Planned Work
 
+- Build the Active Directory environment
 - Build segmented homelab networking
-- Rebuild the Active Directory environment
 - Expand automation and helper scripts
-- Continue documenting security exercises
-- Expand local AI infrastructure documentation
+- Continue documenting security exercises and lab builds
 
 ---
 
