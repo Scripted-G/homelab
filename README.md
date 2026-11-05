@@ -43,7 +43,7 @@ I use this homelab to gain hands-on experience with:
 |---|---|
 | **500 GB NVMe** | Windows 11 IOT LTSC host OS and normal system use |
 | **2 TB NVMe** | Steam library and local AI models/data |
-| **1 TB NVMe (D:)** | Homelab: VM disks (`D:\VM`) and ISO images (`D:\ISO`) |
+| **1 TB NVMe (D:)** | Homelab: VM disks and ISO images |
 
 ---
 
@@ -60,7 +60,7 @@ I use this homelab to gain hands-on experience with:
     │       └── Ubuntu 26.04 test VM
     │
     ├── Local AI
-    │   └── LM Studio
+    │   └── Lemonade
     │
     └── Storage
         ├── 500 GB NVMe: Host OS
