@@ -28,7 +28,7 @@ I use this homelab to gain hands-on experience with:
 
 | Component | Current Setup |
 |---|---|
-| **Host OS** | Windows 11 Pro |
+| **Host OS** | Windows 11 IOT LTSC |
 | **CPU** | AMD Ryzen 9 9900X |
 | **RAM** | 64 GB DDR5 |
 | **GPU** | Sapphire Pulse Radeon RX 9070 XT 16 GB |
@@ -49,7 +49,7 @@ I use this homelab to gain hands-on experience with:
 
 ## 🗂️ Current Lab Architecture
 
-    Windows 11 Pro Host
+    Windows 11 IOT LTSC Host
     ├── VMware Workstation Pro
     │   ├── SecLab
     │   │   ├── Kali Linux
@@ -136,7 +136,7 @@ Workstation Pro.
 
 ## 🤖 Local AI
 
-I run local language models on the Windows host using **LM Studio**. This is a
+I run local language models on the Windows host using **Lemonade**. This is a
 newer area for me, and I'm using it to learn how local model hosting works.
 
 ---
