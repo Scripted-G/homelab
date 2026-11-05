@@ -16,8 +16,7 @@ and local AI infrastructure.
 | **CPU** | AMD Ryzen 9 9900X |
 | **RAM** | 32 GB DDR5 |
 | **GPU** | Sapphire Pulse Radeon RX 9070 XT 16 GB |
-| **Virtualization** | QEMU/KVM + libvirt |
-| **VM Management** | virt-manager |
+| **Virtualization** | VMware Workstation Pro |
 
 ---
 
@@ -27,12 +26,9 @@ The host currently uses four NVMe drives:
 
 | Drive | Current Use |
 |---|---|
-| **500 GB NVMe** | Ubuntu host OS and normal system use |
+| **500 GB NVMe** | Windows 11 IOT LTSC host OS and normal system use |
 | **2 TB NVMe** | Steam library and local AI workloads/data |
 | **1 TB NVMe** | VM disks, snapshots, and frequently used ISO images |
-| **Fourth NVMe** | Currently unassigned |
-
-The 1 TB virtualization drive is used to keep VM storage separate from the host OS.
 
 ---
 
@@ -191,13 +187,11 @@ systems for which I have explicit authorization.
 
 ## 🤖 Local AI Environment
 
-The Ubuntu host also runs a local AI environment.
+The Windows 11 IOT LTSC host also runs a local AI environment.
 
 ### Current components
 
-- **Ollama**
-- **Open WebUI**
-- **Docker**
+- **Lemonade**
 - **Radeon RX 9070 XT** for GPU-accelerated local inference
 - AI model and application data stored on the 2 TB NVMe
 
