@@ -12,7 +12,7 @@ and local AI infrastructure.
 
 | Component | Current Setup |
 |---|---|
-| **Host OS** | Ubuntu 26.04 LTS |
+| **Host OS** | Windows 11 IOT LTSC |
 | **CPU** | AMD Ryzen 9 9900X |
 | **RAM** | 64 GB DDR5 |
 | **GPU** | Sapphire Pulse Radeon RX 9070 XT 16 GB |
