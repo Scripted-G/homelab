@@ -41,7 +41,7 @@ I use this homelab to gain hands-on experience with:
 
 | Drive | Current Use |
 |---|---|
-| **500 GB NVMe** | Windows 11 host OS and normal system use |
+| **500 GB NVMe** | Windows 11 IOT LTSC host OS and normal system use |
 | **2 TB NVMe** | Steam library and local AI models/data |
 | **1 TB NVMe (D:)** | Homelab: VM disks (`D:\VM`) and ISO images (`D:\ISO`) |
 
