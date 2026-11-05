@@ -14,7 +14,7 @@ and local AI infrastructure.
 |---|---|
 | **Host OS** | Ubuntu 26.04 LTS |
 | **CPU** | AMD Ryzen 9 9900X |
-| **RAM** | 32 GB DDR5 |
+| **RAM** | 64 GB DDR5 |
 | **GPU** | Sapphire Pulse Radeon RX 9070 XT 16 GB |
 | **Virtualization** | VMware Workstation Pro |
 
