@@ -33,7 +33,6 @@ I use this homelab to gain hands-on experience with:
 | **RAM** | 64 GB DDR5 |
 | **GPU** | Sapphire Pulse Radeon RX 9070 XT 16 GB |
 | **Virtualization** | VMware Workstation Pro |
-| **VM Organization** | Library folders: `SecLab` and `Dev` |
 
 ---
 
@@ -43,7 +42,7 @@ I use this homelab to gain hands-on experience with:
 |---|---|
 | **500 GB NVMe** | Windows 11 IOT LTSC host OS and normal system use |
 | **2 TB NVMe** | Steam library and local AI models/data |
-| **1 TB NVMe (D:)** | Homelab: VM disks and ISO images |
+| **1 TB NVMe | Homelab: VM disks and ISO images |
 
 ---
 
